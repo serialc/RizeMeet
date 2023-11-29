@@ -1,0 +1,8 @@
+vendor
+content/
+composer.lock
+.htaccess
+.htpasswd
+php/config.php
+composer.phar
+*.swp
