@@ -13,7 +13,7 @@ define("EVENT_ROOMS_FOLDER", "../content/rooms/");
 
 // config file
 define("CONF_TEMPLATE", "../php/template_config.php");
-define("CONF_FILE", "../php/config.php");
+define("CONF_FILE", "../content/config.php");
 
 // logging
 define('LOGSDIR', '../logs/');

@@ -57,9 +57,14 @@ function loadEventDetails() {
     if (file_exists(EVENT_DETAILS_FILE)) {
         return json_decode(file_get_contents(EVENT_DETAILS_FILE), true);
     }
-    return [];
+    return [
+        "porg_date" => "",
+        "porg_stime" => "",
+        "porg_etime" => "",
+        "porg_location" => "",
+        "porg_meeting_topic" => ""
+    ];
 }
-
 
 // https://stackoverflow.com/questions/4356289/php-random-string-generator
 function generateRandomString($length = 10) {

@@ -4,8 +4,6 @@
 
 namespace frakturmedia\RizeMeet;
 
-$conf = loadEventDetails();
-
 // repackage and determine the event based on $conf and today's date
 $next_event = determineNextPorgEvent($conf);
 

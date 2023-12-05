@@ -5,7 +5,7 @@
             <div class="h-100 p-5 text-bg-dark rounded-3">
 
 <?php
-echo 'TOML get main content of page';
+echo 'Get TOML site/filename';
 ?>
             </div>
         </div>
@@ -23,7 +23,7 @@ echo $next_event['pretty_date'] . '<br>' . $next_event['stime'] . ' - ' . $next_
 
 <?php
 // show the location based on $conf
-if ( isset($conf['porg_location']) ) {
+if ( isset($conf['porg_location']) and file_exists(EVENT_ROOMS_FOLDER . $conf['porg_location'])) {
     $room = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['porg_location']), true);
     echo $parsedown->text($room['description']);
 } else {

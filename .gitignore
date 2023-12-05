@@ -1,5 +1,5 @@
 vendor
-content/
+site/
 composer.lock
 .htaccess
 .htpasswd

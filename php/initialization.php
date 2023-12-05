@@ -57,3 +57,8 @@ require_once('../php/functions.php');
 $log = new Logger('main');
 $log->pushHandler(new StreamHandler(LOGSDIR . 'main.log', Level::Info));
 // Use: $log->info("something"), $log->warning(), or $log->error()
+
+use Yosymfony\Toml\Toml;
+$site = Toml::ParseFile('../site.toml');
+
+// EOF

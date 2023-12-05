@@ -56,6 +56,7 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
 
         // Add consent text - e.g. By clicking the link below you consent to ....
         // DO THIS NEXT
+        LISER collects personal information, based on your consent, for the unique purpose of managing the seminar. LISER keeps your personal information for its own use and ensure not to transfer your data to any other entity within or outside the European Union. Your personal information shall be kept by the LISER until the end of the seminar. At the end of the seminar, your personal information shall be deleted. You have the following rights on your personal information: right of access at any time to all your personal information processed by the LISER, right to rectification your personal information, right to erasure, right to withdraw your consent at any time, right to lodge a complaint with the CNPD. To exercise your rights, please send us an email at: dpo@liser.lu
         $html .= '';
         $text .= '';
 

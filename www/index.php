@@ -5,6 +5,11 @@
 namespace frakturmedia\RizeMeet;
 
 require_once('../php/initialization.php');
+// $site specifies the site details based on site.toml
+
+$conf = loadEventDetails();
+
+echo nl2br(print_r($site, true));
 
 $req = explode("/", ltrim($_SERVER['REQUEST_URI'], "/"));
 $page = $req[0];
