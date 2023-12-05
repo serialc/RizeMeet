@@ -66,6 +66,7 @@ pre code {
 .hero, .mini-hero {
     background-color: #879c97;
     color: black;
+    min-height: 70px;
 }
 .hero a, .mini-hero a {
     color: #333;

@@ -93,7 +93,7 @@ echo 'The topic(s) for discussion are:  ' . "\n";
 echo $conf['porg_meeting_topic'];
 
 echo "\n\n" . 'The meeting will take place here:  ' . "\n";
-if ( isset($conf['porg_location']) ) {
+if ( isset($conf['porg_location']) and file_exists( EVENT_ROOMS_FOLDER) ) {
     echo json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['porg_location']), true)['description'];
 } else {
     echo 'No location set yet' . "\n";

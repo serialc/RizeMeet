@@ -6,11 +6,12 @@ echo '<form action="." method="post">';
 echo '<div class="container">';
 echo '<div class="row">';
 
-// read the existing configuration - if it doesn't exist, it's fine
-$conf = json_decode(file_get_contents(EVENT_DETAILS_FILE), true);
-
 // the possible locations
-$porg_locs = array_diff(scandir(EVENT_ROOMS_FOLDER), array('.', '..'));
+if ( file_exists(EVENT_ROOMS_FOLDER) ) {
+    $porg_locs = array_diff(scandir(EVENT_ROOMS_FOLDER), array('.', '..'));
+} else {
+    $porg_locs = [];
+}
 
 // update date
 if (isset($_POST['porg_date'])) {

@@ -5,15 +5,17 @@
 namespace frakturmedia\RizeMeet;
 
 // project specific files
-define("EVENT_DETAILS_FILE", "../content/event_details.json");
-define("ADMIN_SALT_FILE", "../content/salt_file.txt");
-define("MAILING_LIST_MEMBERS_FILENAME", "../content/mailing_list.csv");
-define("MAILING_ARCHIVE_FOLDER", "../content/ml_archive/");
-define("EVENT_ROOMS_FOLDER", "../content/rooms/");
+define("SITE_PATH", "../site/");
+define("EVENT_DETAILS_FILE",            SITE_PATH . "event_details.json");
+define("ADMIN_SALT_FILE",               SITE_PATH . "salt_file.txt");
+define("MAILING_LIST_MEMBERS_FILENAME", SITE_PATH . "mailing_list.csv");
+define("MAILING_ARCHIVE_FOLDER",        SITE_PATH . "ml_archive/");
+define("EVENT_ROOMS_FOLDER",            SITE_PATH . "rooms/");
+define("SESSIONS_DIR",                  SITE_PATH . "sessions/");
 
 // config file
 define("CONF_TEMPLATE", "../php/template_config.php");
-define("CONF_FILE", "../content/config.php");
+define("CONF_FILE", SITE_PATH . "config.php");
 
 // logging
 define('LOGSDIR', '../logs/');

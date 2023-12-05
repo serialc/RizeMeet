@@ -3,8 +3,6 @@
 // Purpose: List the markdown session files or
 // display the contents of a session (convert md to html)
 
-define ("SESSIONS_DIR", '../sessions');
-
 echo '<div class="container">';
 
 // If a date is provided show the session
@@ -30,7 +28,11 @@ if (count($req) > 1 ) {
     // Show the dates
 
     // get list of files in the sessions folder
-    $sess = array_values(array_diff(scandir(SESSIONS_DIR), array('.','..',    'allocated')));
+    if( file_exists(SESSIONS_DIR) ) {
+        $sess = array_values(array_diff(scandir(SESSIONS_DIR), array('.','..',    'allocated')));
+    } else {
+        $sess = [];
+    }
 
     // sort so the newest date is at the top
     arsort($sess);

@@ -9,7 +9,7 @@ require_once('../php/initialization.php');
 
 $conf = loadEventDetails();
 
-echo nl2br(print_r($site, true));
+//echo nl2br(print_r($site, true));
 
 $req = explode("/", ltrim($_SERVER['REQUEST_URI'], "/"));
 $page = $req[0];

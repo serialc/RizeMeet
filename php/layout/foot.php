@@ -9,20 +9,38 @@ namespace frakturmedia\RizeMeet;
         <div class="row">
 
             <div class="col-md-4 mt-3">
-<?php echo 'Display content of footer_left'; ?>
+<?php
+if (file_exists(SITE_PATH . 'foot_left.md')) {
+    echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_left.md'));
+} else {
+    echo '<p>Customize ' . SITE_PATH . 'foot_left.md</p>';
+}
+?>
             </div>
 
             <div class="col-md-4 mt-3">
-<?php echo 'Display content of footer_centre'; ?>
+<?php
+if (file_exists(SITE_PATH . 'foot_middle.md')) {
+    echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_middle.md'));
+} else {
+    echo '<p>Customize ' . SITE_PATH . 'foot_middle.md</p>';
+}
+?>
             </div>
 
             <div class="col-md-4 mt-3">
-<?php echo 'Display content of footer_right'; ?>
+<?php
+if (file_exists(SITE_PATH . 'foot_right.md')) {
+    echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_right.md'));
+} else {
+    echo '<p>Customize ' . SITE_PATH . 'foot_right.md</p>';
+}
+?>
             </div>
 
             <div class="col-12 mt-5 text-center" style="font-size: 0.7em">
                 <p>
-                    RizeMeet is a minimal CMS to facilitate meeting management and coordination.<br>
+                    <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> is a minimal CMS facilitating meeting management and coordination.<br>
                     Copyright (C) 
 
 <?php

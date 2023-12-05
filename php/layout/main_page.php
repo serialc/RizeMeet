@@ -5,7 +5,11 @@
             <div class="h-100 p-5 text-bg-dark rounded-3">
 
 <?php
-echo 'Get TOML site/filename';
+if (file_exists(SITE_PATH . 'introduction.md')) {
+    echo $parsedown->text(file_get_contents(SITE_PATH . 'introduction.md'));
+} else {
+    echo '<h4>Customize ' . SITE_PATH . 'introduction.md</h4>';
+}
 ?>
             </div>
         </div>
