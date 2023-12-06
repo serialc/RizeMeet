@@ -3,7 +3,7 @@
 // Purpose: List the markdown session files or
 // display the contents of a session (convert md to html)
 
-echo '<div class="container">';
+echo '<div class="container" style="min-height: 50vh">';
 
 // If a date is provided show the session
 if (count($req) > 1 ) {
@@ -39,6 +39,10 @@ if (count($req) > 1 ) {
 
     echo '<h1 class="mt-5">Past PORG sessions</h1>';
     echo '<div class="row mt-3">';
+
+    if (count($sess) === 0) {
+        echo '<p>Nothing ... yet!</p>';
+    }
 
     foreach($sess as $s) {
         $strdate = pathinfo($s, PATHINFO_FILENAME);

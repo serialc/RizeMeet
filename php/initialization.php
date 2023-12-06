@@ -59,6 +59,9 @@ $log->pushHandler(new StreamHandler(LOGSDIR . 'main.log', Level::Info));
 // Use: $log->info("something"), $log->warning(), or $log->error()
 
 use Yosymfony\Toml\Toml;
+if ( !file_exists( SITE_TOML ) ) {
+    copy(SITE_TOML_TEMPLATE, SITE_TOML);
+}
 $site = Toml::ParseFile('../site.toml');
 
 // EOF

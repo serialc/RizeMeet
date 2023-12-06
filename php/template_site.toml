@@ -1,0 +1,10 @@
+# TOML syntax (this is a comment)
+# below is a key value pair
+# something = value
+# [item] this is a variable key value heading - any KV below will reside within
+# [item.subitem] this is a sub specification
+# [[apple]] array item?
+
+brand = "RizeMeet"
+full_name = "RizeMeet is a barebones CMS"
+logo_filename = "risemeet.svg"

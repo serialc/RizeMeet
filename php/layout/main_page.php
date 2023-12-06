@@ -14,9 +14,9 @@ if (file_exists(SITE_PATH . 'introduction.md')) {
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div id='event_date' class="col-md-6">
             <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                <h2 id='event_date'>Next event</h2>
+                <h2>Next event</h2>
                 <p class="fs-4 text-warning">
 
 <?php
