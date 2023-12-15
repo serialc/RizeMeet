@@ -40,6 +40,9 @@ if (file_exists(SITE_PATH . 'foot_right.md')) {
 
             <div class="col-12 mt-5 text-center" style="font-size: 0.7em">
                 <p>
+                    <a href="unsubscribe">Unsubscribe</a>
+                <p>
+                <p>
                     <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> is a minimal CMS facilitating meeting management and coordination.<br>
                     Copyright (C) 
 

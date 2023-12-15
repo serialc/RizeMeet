@@ -16,7 +16,7 @@ define("SESSIONS_DIR",                  SITE_PATH . "sessions/");
 // config file
 define("CONF_TEMPLATE", "../php/template_config.php");
 define("CONF_FILE", SITE_PATH . "config.php");
-define("SITE_TOML", "../site.toml");
+define("SITE_TOML", "../site/site.toml");
 define("SITE_TOML_TEMPLATE", "../php/template_site.toml");
 
 // logging

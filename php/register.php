@@ -55,8 +55,11 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
         $url = 'http://' . $_SERVER['SERVER_NAME'] . '/register/' . $newmailaddress . '/' . $encryptedmail;
 
         // Add consent text - e.g. By clicking the link below you consent to ....
-        // DO THIS NEXT
-        LISER collects personal information, based on your consent, for the unique purpose of managing the seminar. LISER keeps your personal information for its own use and ensure not to transfer your data to any other entity within or outside the European Union. Your personal information shall be kept by the LISER until the end of the seminar. At the end of the seminar, your personal information shall be deleted. You have the following rights on your personal information: right of access at any time to all your personal information processed by the LISER, right to rectification your personal information, right to erasure, right to withdraw your consent at any time, right to lodge a complaint with the CNPD. To exercise your rights, please send us an email at: dpo@liser.lu
+        $consent = $site['brand'] . ' collects personal information, based on your consent, for the unique purpose of managing the mailing list. ';
+        $consent .= $site['brand'] . ' keeps your personal information, meaning your email, for its own use and ensure not to transfer your data to any other entity outside the organization. ';
+        $consent .= 'Your personal information shall be kept by ' . $site['brand'] . ' two years from the last email you have been sent, or until you unsubscribe. ';
+        $consent .= 'If ' . $site['brand'] . ' ceases to be active for two years, your personal information shall be deleted. You have the following rights on your personal information: right of access at any time to all your personal information processed by ' . $site['brand'] . ', right to rectification of your personal information, right to erasure, right to withdraw your consent at any time, right to lodge a complaint with your appropriate data protection agency. To exercise your rights, please see the bottom of any ' . $site['brand'] . ' email, the website, or send us an email at: ' . $site['contact_email'];
+
         $html .= '';
         $text .= '';
 

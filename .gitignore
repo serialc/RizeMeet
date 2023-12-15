@@ -1,6 +1,5 @@
 vendor
 site/
-site.toml
 composer.lock
 .htaccess
 .htpasswd
