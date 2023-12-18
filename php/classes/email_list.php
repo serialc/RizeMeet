@@ -8,6 +8,7 @@ class MailingList {
 
     private $list;
     private $raw;
+    private $sfc;
 
     function __construct( )
     {
@@ -35,6 +36,21 @@ class MailingList {
             echo "Failed to open the mailing list file.";
             return false;
         }
+
+        // salt file, used to encyrpt email, check it exists and populate if not
+        if (file_exists(ADMIN_SALT_FILE)) {
+            $this->sfc = file_get_contents(ADMIN_SALT_FILE);
+        } else {
+            // no salt file exists, create one - generate a salt file code
+            $this->sfc = generateRandomString(20);
+            // save it
+            file_put_contents(ADMIN_SALT_FILE, $this->sfc);
+        }
+    }
+
+    public function saltAndHash ($email)
+    {
+        return hashPassword($this->sfc . $email);
     }
 
     public function count ()

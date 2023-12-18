@@ -4,7 +4,7 @@
 
 namespace frakturmedia\RizeMeet;
 
-require_once('../php/classes/maillist.php');
+require_once('../php/classes/email_list.php');
 
 // repackage and determine the event based on $conf and today's date
 $next_event = determineNextPorgEvent($conf);

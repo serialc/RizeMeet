@@ -4,24 +4,12 @@
 
 namespace frakturmedia\porg;
 
-require_once('../conf/config.php');
-require_once('../php/functions.php');
 require_once('../php/classes/mailer.php');
-require_once('../php/classes/maillist.php');
+require_once('../php/classes/email_list.php');
 
 echo '<div class="container">';
 
-// salt file, used to encyrpt email, check it exists and populate if not
-$sfc = file_get_contents(ADMIN_SALT_FILE);
-
-if (!$sfc) {
-    // generate a code
-    $sfc = generateRandomString(20);
-    // save it
-    file_put_contents(ADMIN_SALT_FILE, $sfc);
-}
-
-// is an email address sent and valid
+// is an email address sent and is it valid
 if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDATE_EMAIL)) {
     $newmailaddress = $_POST['reg_email'];
 
@@ -32,7 +20,7 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
 
     // read registered emails
     // get the list of emailing list
-    $maillist = new MailingList();
+    $eml = new MailingList();
 
     // start building the email content
     $html = '<h1>PORG mailing list registration request</h1>';
@@ -40,7 +28,7 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
     $text .= "======================================\n";
 
     // check if new email is already in mailing list 
-    if ($maillist->exists($newmailaddress)) {
+    if ($eml->exists($newmailaddress)) {
         // Don't want to give away that it is to prevent people trying to fish out emails
         // We'll send them an email with different content but
         // we do not want to indicate anything differently on the webpage
@@ -51,7 +39,7 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
         // the link containing:
         // - The email address
         // - The encyrpted email address, using the salt
-        $encryptedmail = hashPassword($sfc . $newmailaddress);
+        $encryptedmail = $eml->saltAndHash($newmailaddress);
         $url = 'http://' . $_SERVER['SERVER_NAME'] . '/register/' . $newmailaddress . '/' . $encryptedmail;
 
         // Add consent text - e.g. By clicking the link below you consent to ....
@@ -87,39 +75,33 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
     // Is there an email and a hashed salted email in the url - a response from the confirmation email?
     // something like: http://porg.digitaltwin.lu/register/cyrille@digitaltwin.lu/$2y$15......rf9uTX6
     if ( count($req) >= 3 ) {
-        $this_email = $req[1];
-        $salted_email = $sfc . $this_email;
+        $the_email = $req[1];
 
-        $hashed_email = $req[2];
+        // Get the mailing list
+        $eml = new MailingList();
+        $hashed_email = $eml->saltAndHash($the_email);
 
-        // there may be a slash in the hashed email
-        // need to select $req[2+]
-        if ( count($req) > 3 ) {
-            $hashed_email = implode('/', array_splice($req, 2));
-        }
-
+        // get the provided hashed email in the URL (may be a lie)
         // need to decode URLs with special characters
-        $hashed_email = urldecode($hashed_email);
+        $passed_hashed_email = urldecode($req[2])
 
-        // check that passed password is valid and that the salted email is correct
-        if ( strcmp(filter_var($this_email, FILTER_VALIDATE_EMAIL), $this_email) === 0
-            and password_verify($salted_email, $hashed_email) ) {
-            // this is a successful validation
+        // check that the email is valid AND
+        // validate the hashed passed email to the provided hashed email
+        if ( strcmp(filter_var($the_email, FILTER_VALIDATE_EMAIL), $the_email) === 0
+            and password_verify($passed_hashed_email, $hashed_email) ) {
+            // Successful validation
 
             // Check that the email address is not already in the list
-            // Get the mailing list
-            $maillist = new MailingList();
-
-            // if already in list
-            if ($maillist->exists($this_email)) {
+            if ($eml->exists($the_email)) {
                 echo '<h1>You are already registered</h1>';
             } else {
-                $maillist->add($this_email);
+                $eml->add($the_email);
                 echo '<h1>Success</h1>';
                 echo '<p>You are now registered to the PORG mailing list!</p>';
             }
 
         } else {
+            // Failed validation (email not valid or doesn't match hashed version)
             echo '<h1>Error</h1>';
             echo 'Something went wrong trying to verify your email. Let us know.';
         }

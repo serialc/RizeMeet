@@ -16,4 +16,15 @@ define('EMAIL_PORT', 465);
 // Define if production or development
 define('SERVER_IS_PRODUCTION', FALSE);
 
+// Indicate if mailing list and sessions are stored in files or DB
+define('DATA_BACKEND_DB_OR_FILE', 'file');
+//define('DATA_BACKEND_DB_OR_FILE', 'db');
+
+// DefineDB connection parameters
+define('DB_SERVER', 'localhost');
+define('DB_USER_RWD', 'db_username_rwd');
+define('DB_USER_READ', 'db_username_read');
+define('DB_NAME', 'username');
+define('DB_PASS', 'password');
+
 // EOF

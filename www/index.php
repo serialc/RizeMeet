@@ -17,9 +17,16 @@ $page = $req[0];
 include '../php/layout/head.php';
 
 switch ($page) {
+case 'documentation':
+    include '../php/layout/documentation.php';
+    break;
+
+case 'unsubscribe':
+    include '../php/layout/unsubscribe/unsubscribe_main.php';
+    break;
 
 case 'deregister':
-    include '../php/unsubscribe.php';
+    include '../php/deregister.php';
     break;
 
 case 'register':

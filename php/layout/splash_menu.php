@@ -23,10 +23,10 @@
 
         <div class="col-md-4">
             <div class="rounded-3 p-2 hero text-center mb-3">
-                <form action="/register" method="post">
+                <form action="/subscribe" method="post">
                     <div class="input-group my-2">
-                        <input id="reg_email" name="reg_email" type="email" class="form-control" placeholder="e-mailing list">
-                        <button type="submit" class="btn btn-secondary">Register</button>
+                        <input id="reg_email" name="reg_email" type="email" class="form-control" placeholder="mailing list">
+                        <button type="submit" class="btn btn-secondary">Subscribe</button>
                     </div>
                 </form>
             </div>

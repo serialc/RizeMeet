@@ -8,13 +8,14 @@ use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-date_default_timezone_set("CET");
+// load constants
+require_once("../php/constants.php");
+
+date_default_timezone_set(TIMEZONE);
 
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
 
-// load constants
-require_once("../php/constants.php");
 
 // load or create ../php/config.php
 if ( !file_exists(CONF_FILE) ) {
@@ -62,6 +63,6 @@ use Yosymfony\Toml\Toml;
 if ( !file_exists( SITE_TOML ) ) {
     copy(SITE_TOML_TEMPLATE, SITE_TOML);
 }
-$site = Toml::ParseFile('../site.toml');
+$site = Toml::ParseFile( SITE_TOML );
 
 // EOF

@@ -75,6 +75,10 @@ echo '</div>';
 // show the location form
 echo '<div class="col-lg-3 col-md-4"><h2>Meeting location</h2>';
 
+if (count($porg_locs) === 0) {
+    echo 'No locations available. See the <a href="/documentation">documentation</a>.';
+}
+
 foreach($porg_locs as $fn) {
 
     $room = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $fn), true);
