@@ -15,7 +15,7 @@ $maillist = new MailingList();
 echo '<div class="container mt-2">
     <form action="." method="post">
         <div class="row">
-            <div class="col-12 mt-2"><h1>Contact mailing list</h1></div>';
+            <div class="col-12 mt-2"><h1>Contacts Mailing List</h1></div>';
 
 
 // process the email text, send it to the mailing list
@@ -101,14 +101,14 @@ if ( isset($conf['porg_location']) and file_exists( EVENT_ROOMS_FOLDER) ) {
 
 echo <<< END
                 </textarea>
-                <div class="form-check fs-5 mt-2">
+                <div class="form-check mt-2">
                     <input type="checkbox" class="form-check-input" id="send_calendar_invite" name="send_calendar_invite">
                     <label class="form-check-label" for="send_calendar_invite">Send calendar invitation</label>
                 </div>
             </div>
 
             <div class="col-12 text-end">
-                <button type="submit" class="btn btn-primary mt-3">Send emails</button>
+                <button type="submit" class="btn btn-primary">Send emails</button>
             </div>
         </div>
     </form>
