@@ -2,7 +2,7 @@
 // Filename: php/register.php
 // Purpose: Handles submission of email address and validation
 
-namespace frakturmedia\porg;
+namespace frakturmedia\RizeMeet;
 
 require_once('../php/classes/mailer.php');
 require_once('../php/classes/email_list.php');
@@ -23,8 +23,8 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
     $eml = new MailingList();
 
     // start building the email content
-    $html = '<h1>PORG mailing list registration request</h1>';
-    $text = "PORG mailing list registration request\n";
+    $html = '<h1>' . $site['brand'] . ' mailing list registration request</h1>';
+    $text = $site['brand'] . "mailing list registration request\n";
     $text .= "======================================\n";
 
     // check if new email is already in mailing list 
@@ -52,16 +52,8 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
         $text .= '';
 
         // create the email content
-        $html .= '<p>Please click the <a href="' . $url . '">link</a> to confirm your registration to PORG.</p>';
-        $text .= "Please visit the link (' . $url . ') to confirm your registration to PORG.\n";
-    }
-
-    $html .= '<p>If you did not make this request, ignore it or let us know.</p>';
-
-    $text .= "If you did not make this request, ignore it or let us know.\n";
-
-    $email = new Mail();
-    if( $email->send($newmailaddress, '', 'PORG mainling list registration request', $html, $text) ) {
+        $html .= '<p>Please click the <a href="' . $url . '">link</a> to confirm your registration to ' . $site['brand'] . '.</p>';
+        $text .= "Please visit the link (' . $url . ') to confirm your registration to " . $site['brand'] . ' mailing list registration request', $html, $text) ) {
         echo '<h1>Email confirmation sent</h1>';
         echo '<p>An email is being sent to you to confirm your registration.</p>';
     } else {
@@ -73,7 +65,7 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
     // no valid email is submitted
 
     // Is there an email and a hashed salted email in the url - a response from the confirmation email?
-    // something like: http://porg.digitaltwin.lu/register/cyrille@digitaltwin.lu/$2y$15......rf9uTX6
+    // something like: http://SERVER_NAME/register/cyrille@digitaltwin.lu/$2y$15......rf9uTX6
     if ( count($req) >= 3 ) {
         $the_email = $req[1];
 
@@ -83,7 +75,7 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
 
         // get the provided hashed email in the URL (may be a lie)
         // need to decode URLs with special characters
-        $passed_hashed_email = urldecode($req[2])
+        $passed_hashed_email = urldecode($req[2]);
 
         // check that the email is valid AND
         // validate the hashed passed email to the provided hashed email
@@ -97,7 +89,7 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
             } else {
                 $eml->add($the_email);
                 echo '<h1>Success</h1>';
-                echo '<p>You are now registered to the PORG mailing list!</p>';
+                echo '<p>You are now registered to the ' . $site['brand'] . ' mailing list!</p>';
             }
 
         } else {

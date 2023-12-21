@@ -29,8 +29,8 @@ case 'deregister':
     include '../php/deregister.php';
     break;
 
-case 'register':
-    include '../php/register.php';
+case 'subscribe':
+    include '../php/mailinglist/subscribe.php';
     break;
 
 case 'sessions':

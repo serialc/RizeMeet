@@ -6,8 +6,6 @@ namespace frakturmedia\RizeMeet;
 
 require_once('../php/classes/email_list.php');
 
-// repackage and determine the event based on $conf and today's date
-$next_event = determineNextPorgEvent($conf);
 // get the list of emailing list
 $maillist = new MailingList();
 
@@ -19,7 +17,7 @@ echo '<div class="container mt-2">
 
 
 // process the email text, send it to the mailing list
-if (isset($_POST['porg_email_text'])) {
+if (isset($_POST['rizemeet_email_text'])) {
     echo '<div class="row"><div class="col-12">';
 
     $send_calendar_invite = false;
@@ -43,7 +41,7 @@ if (isset($_POST['porg_email_text'])) {
         // if sending of calendar invitation is enabled
         if ( $send_calendar_invite ) {
             // Create calendar invite/ICS
-            $ical_content = createIcalContent($next_event['start_dt'], $next_event['end_dt'], 'PORG meeting', $conf['porg_meeting_topic'], $next_event['place'], $email_address);
+            $ical_content = createIcalContent($next_event['start_dt'], $next_event['end_dt'], 'PORG meeting', $conf['rizemeet_meeting_topic'], $next_event['place'], $email_address);
 
             // attach ical event if requested
             $email->addStringAttachment($ical_content);
@@ -55,10 +53,10 @@ if (isset($_POST['porg_email_text'])) {
         $parsedown = new \Parsedown();
 
         // Build up the email content
-        $ehtml = '<html><body>' . $parsedown->text($_POST['porg_email_text']);
+        $ehtml = '<html><body>' . $parsedown->text($_POST['rizemeet_email_text']);
 
         // add deregister text at footer
-        $ehtml .= '<p><a href="https://porg.digitaltwin.lu">Visit the website</a> for more information.</p>';
+        $ehtml .= '<p><a href="https://' . $_SERVER['SERVER_NAME'] . '">Visit the website</a> for more information.</p>';
         $ehtml .= '<p>To unsubscribe <a href="' . $unsuburl . '">click here</a> or visit the link ' . $unsuburl . '</p></body></html>';
 
         if( $email->send($email_address, 'Honorable PORG', 'PORG news', $ehtml, strip_tags($ehtml)) ) {
@@ -75,11 +73,11 @@ if (isset($_POST['porg_email_text'])) {
     echo '</div></div>';
 }
 
-echo '<div class="col-12 my-2"><p class="text-primary mb-1">Members on the mailing list: <b>' . $maillist->count() . '</b></p></div>';
+echo '<div class="col-lg-3 col-md-12"><p class="text-primary mb-1">Members on the mailing list: <b>' . $maillist->count() . '</b></p></div>';
 
 echo <<< END
-            <div class="col-12">
-                <textarea id="porg_email_text" name="porg_email_text" rows="10" class="w-100">
+            <div class="col-lg-9 col-md-12">
+                <textarea id="rizemeet_email_text" name="rizemeet_email_text" rows="10" class="w-100">
 Dear PORG subscriber,
 
 
@@ -90,11 +88,11 @@ echo 'The next PORG meet-up is on **' . $next_event['pretty_date'] . ' at ' . $n
 
 echo 'The topic(s) for discussion are:  ' . "\n";
 
-echo $conf['porg_meeting_topic'];
+echo $conf['rizemeet_meeting_topic'];
 
 echo "\n\n" . 'The meeting will take place here:  ' . "\n";
-if ( isset($conf['porg_location']) and file_exists( EVENT_ROOMS_FOLDER) ) {
-    echo json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['porg_location']), true)['description'];
+if ( isset($conf['rizemeet_location']) and file_exists( EVENT_ROOMS_FOLDER) ) {
+    echo json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true)['description'];
 } else {
     echo 'No location set yet' . "\n";
 }

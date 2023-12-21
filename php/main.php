@@ -5,7 +5,7 @@
 namespace frakturmedia\RizeMeet;
 
 // repackage and determine the event based on $conf and today's date
-$next_event = determineNextPorgEvent($conf);
+$next_event = determineNextEvent($conf);
 
 // select Parsedown from the global namespace
 $parsedown = new \Parsedown();

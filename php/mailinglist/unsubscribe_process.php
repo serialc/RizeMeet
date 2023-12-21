@@ -2,7 +2,7 @@
 // Filename: php/layout/unsubscribe/.unsubscribe_form_process.php
 // Purpose: process request. Check if name is on mailing list, if so send email
 
-namespace frakturmedia\porg;
+namespace frakturmedia\rizemeet;
 
 require_once('../php/classes/mailer.php');
 require_once('../php/classes/email_list.php');

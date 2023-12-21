@@ -48,8 +48,7 @@ if ( strcmp(filter_var($this_email, FILTER_VALIDATE_EMAIL), $this_email) === 0
         $maillist->remove($this_email);
 
         echo '<h1>You have been unsubscribed</h1>';
-        echo '<p>So long, and thanks for all the fish!</p>';
-        echo '<p><img src="/imgs/porg.svg"></p>';
+        echo '<p>Thank you for taking part!</p>';
     } else {
         echo '<h1>Email address not found</h1>';
         echo '<p>Perhaps you have already completed the action?</p>';

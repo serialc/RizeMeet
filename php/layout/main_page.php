@@ -27,8 +27,8 @@ echo $next_event['pretty_date'] . '<br>' . $next_event['stime'] . ' - ' . $next_
 
 <?php
 // show the location based on $conf
-if ( isset($conf['porg_location']) and file_exists(EVENT_ROOMS_FOLDER . $conf['porg_location'])) {
-    $room = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['porg_location']), true);
+if ( isset($conf['rizemeet_location']) and file_exists(EVENT_ROOMS_FOLDER . $conf['rizemeet_location'])) {
+    $room = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
     echo $parsedown->text($room['description']);
 } else {
     echo 'No location set yet';
@@ -40,8 +40,8 @@ if ( isset($conf['porg_location']) and file_exists(EVENT_ROOMS_FOLDER . $conf['p
 
 <?php
 // show the suggested next meeting topics
-if ( $conf['porg_meeting_topic'] ) {
-    echo $parsedown->text($conf['porg_meeting_topic']);
+if ( $conf['rizemeet_meeting_topic'] ) {
+    echo $parsedown->text($conf['rizemeet_meeting_topic']);
 } else {
     echo 'Free form discussion';
 }

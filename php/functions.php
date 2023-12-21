@@ -26,7 +26,7 @@ use Eluceo\iCal\Presentation\Factory\CalendarFactory;
 function createIcalContent ($start, $end, $name, $description, $location, $dest_email ) {
 
     // create the event with a unique identifier
-    $event = (new Event( new UniqueIdentifier('porg.digitaltwin.lu')))
+    $event = (new Event( new UniqueIdentifier($_SERVER['SERVER_NAME'])))
         ->touch(new Timestamp())
         ->setSummary($name)
         ->setDescription($description)
@@ -58,11 +58,12 @@ function loadEventDetails() {
         return json_decode(file_get_contents(EVENT_DETAILS_FILE), true);
     }
     return [
-        "porg_date" => "",
-        "porg_stime" => "",
-        "porg_etime" => "",
-        "porg_location" => "",
-        "porg_meeting_topic" => ""
+        "rizemeet_date" => "",
+        "rizemeet_stime" => "",
+        "rizemeet_etime" => "",
+        "rizemeet_location" => "",
+        "rizemeet_meeting_topic" => "",
+        "rizemeet_regular" => "second Monday of this month"
     ];
 }
 
@@ -86,37 +87,36 @@ function hashPassword($pw)
     );
 }
 
-function determineNextPorgEvent($conf)
+function determineNextEvent($conf)
 {
     // get the requested date
-    if (strcmp($conf['porg_date'], '') !== 0) {
-        $req_date = new \DateTime($conf['porg_date']);
+    if (strcmp($conf['rizemeet_date'], '') !== 0) {
+        $req_date = new \DateTime($conf['rizemeet_date']);
     }
 
     // get today's date
     $today = new \DateTime(date('Y-m-d'));
 
     // if the requested date is in the future, or today, display that
-    // need to still check if porg_date is '' as otherwise $req_date is today
-    if (strcmp($conf['porg_date'], '') !== 0 and ($req_date == $today or $req_date > $today)) {
+    if (strcmp($conf['rizemeet_date'], '') !== 0 and ($req_date == $today or $req_date > $today)) {
         $event_date = $req_date;
     } else {
-        // figure out the next likely date
+        // figure out the next regular date
 
-        # get this month's nth Monday, next month's nth Monday
-        $secmon_thismonth = (clone $today)->modify('second monday of this month');
-        $secmon_nextmonth = (clone $today)->modify('second monday of next month');
+        // get this month's nth Monday, next month's nth Monday
+        $thismonth = (clone $today)->modify($conf['rizemeet_regular']);
+        $nextmonth = (clone $today)->modify('first day of next month')->modify($conf['rizemeet_regular']);
 
-        // determine which Monday is the right next one (this month's or next month's)
+        // determine which date is the appropriate/next one (this month's or next month's)
         $is_today = false;
 
-        if ($today < $secmon_thismonth) {
-            $event_date = $secmon_thismonth;
-        } elseif ($today == $secmon_thismonth) {
+        if ($today < $thismonth) {
+            $event_date = $thismonth;
+        } elseif ($today == $thismonth) {
             $is_today = true;
-            $event_date = $secmon_thismonth;
+            $event_date = $thismonth;
         } else {
-            $event_date = $secmon_nextmonth;
+            $event_date = $nextmonth;
         }
     }
 
@@ -124,9 +124,9 @@ function determineNextPorgEvent($conf)
     /*
     print($today->format('l, M d, Y'));
     print('<br>');
-    print($secmon_thismonth->format('l, M d, Y'));
+    print($thismonth->format('l, M d, Y'));
     print('<br>');
-    print($secmon_nextmonth->format('l, M d, Y'));
+    print($nextmonth->format('l, M d, Y'));
     print('<br>');
      */
 
@@ -134,11 +134,11 @@ function determineNextPorgEvent($conf)
     $stime = '12:00';
     $etime = '13:00';
 
-    if (strcmp($conf['porg_stime'], '') !== 0) {
-        $stime = $conf['porg_stime'];
+    if (strcmp($conf['rizemeet_stime'], '') !== 0) {
+        $stime = $conf['rizemeet_stime'];
     }
-    if (strcmp($conf['porg_etime'], '') !== 0) {
-        $etime = $conf['porg_etime'];
+    if (strcmp($conf['rizemeet_etime'], '') !== 0) {
+        $etime = $conf['rizemeet_etime'];
     }
 
     // format event date for humans
@@ -150,9 +150,10 @@ function determineNextPorgEvent($conf)
     return array(
         "date" => $event_date,
         "pretty_date" => $event_date->format('l, M j, Y'),
+        "today" => $is_today,
         "stime" => $stime,
         "etime" => $etime,
-        "place" => $conf['porg_location'],
+        "place" => $conf['rizemeet_location'],
         "start_dt" => $event_date->format('Y-m-d') . ' ' . $stime,
         "end_dt" => $event_date->format('Y-m-d') . ' ' . $etime,
     );
