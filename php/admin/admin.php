@@ -7,21 +7,24 @@ namespace frakturmedia\RizeMeet;
 // To do
 echo <<< _END
 <div class="container"><div class="row"><div class="col">
-<h1>To do:</h1>
+<h3>To do:</h3>
 <ul>
 <li>Sessions submit and edit form</li>
-<li>Edit the htpasswd file</li>
-<li>Add a second admin page (cog/settings) that allows the customization of the entirety of the site.toml and all the other content pages</li>
 </ul>
 </div> </div> </div>
 
 _END;
 
+// process .htpasswd username addition
+include('../php/admin/admin_add_user_processing.php');
+
 // check if there's an .htpasswd file 
 // if not, show the form to create it
 if (!file_exists('admin/.htpasswd')) {
-    include('../php/admin/admin_create_htpasswd.php');
+    include('../php/admin/admin_add_user_form.php');
 }
+
+echo '<div class="container"><div class="row"><div class="col"><h1>Manage Event</h1></div></div></div>';
 
 // show the form for the regular meeting time
 include('../php/admin/admin_regular_event.php');
@@ -35,5 +38,32 @@ include('../php/admin/admin_next_event.php');
 
 // show the form to email registrants with info on next event
 include '../php/admin/admin_mailing_list_manager.php';
+
+// divider, below is the infrequent updates
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+
+echo '<div class="container"><div class="row"><div class="col">' .
+     '<h1>Manage Administrators <img id="icon_manage_admin" class="intico" src="/imgs/icons/rise_white.svg"></h1>' .
+     '</div></div></div>';
+
+echo '<div id="form_manage_admin">';
+// show the admin access controls
+if (file_exists('admin/.htpasswd')) {
+    include('../php/admin/admin_add_user_form.php');
+    include('../php/admin/admin_delete_user.php');
+}
+echo '</div>';
+
+// divider, below is the public content
+// DISABLED for now
+//echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+//echo '<div class="container"><div class="row"><div class="col"><h1>Manage Content</h1></div></div></div>';
+
+// show the Site TOML windows
+
+// show the welcome page MD content 
+//include('../php/admin/admin_edit_content.php');
+
+// modify sessions
 
 // EOF

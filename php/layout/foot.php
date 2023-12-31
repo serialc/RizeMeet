@@ -40,11 +40,11 @@ if (file_exists(SITE_PATH . 'foot_right.md')) {
 
             <div class="col-12 mt-5 text-center" style="font-size: 0.7em">
                 <p>
-                    <a href="unsubscribe/form">Unsubscribe</a>
+                    <a href="/unsubscribe/form">Unsubscribe</a>
                 <p>
                 <p>
-                    <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> is a minimal CMS facilitating meeting management and coordination.<br>
-                    Copyright (C) 
+                    <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> facilitates meeting management and coordination.<br>
+                    Copyright &copy;
 
 <?php
 
@@ -59,7 +59,7 @@ echo $today->format('Y');
         </div>
     </footer>
 </div>
-
+<script src="/js/rm.js"></script>
 </body>
 </html>
 

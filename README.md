@@ -1,4 +1,4 @@
-# RizeMeet is a barebones CMS
+# RizeMeet facilitates recurring meeting organization
 
 You want to regularly meet with a group of friends/colleagues, etc... and coordinating meeting date, time, and place, while having a minimal presnece online that introduces your group.
 

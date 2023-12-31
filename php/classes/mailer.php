@@ -2,7 +2,7 @@
 // Filename: php/classes/mailer.php
 // Purpose: Handles all email sending
 
-namespace frakturmedia\RiseMeet;
+namespace frakturmedia\RizeMeet;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;

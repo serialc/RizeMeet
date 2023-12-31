@@ -13,7 +13,7 @@ $maillist = new MailingList();
 echo '<div class="container mt-2">
     <form action="." method="post">
         <div class="row">
-            <div class="col-12 mt-2"><h1>Contacts Mailing List</h1></div>';
+            <div class="col-12 mt-2"><h2>Contacts mailing list</h2></div>';
 
 
 // process the email text, send it to the mailing list
@@ -21,7 +21,7 @@ if (isset($_POST['rizemeet_email_text'])) {
     echo '<div class="row"><div class="col-12">';
 
     $send_calendar_invite = false;
-    if ( strcmp('on', $_POST['send_calendar_invite']) === 0 ) {
+    if ( isset($_POST['send_calendar_invite']) and strcmp('on', $_POST['send_calendar_invite']) === 0 ) {
         $send_calendar_invite = true;
     }
 
@@ -34,14 +34,14 @@ if (isset($_POST['rizemeet_email_text'])) {
     foreach( $maillist->get() as $email_address ) {
         // create hashed email
         $hashedemail = hashPassword($sfc . $email_address);
-        $unsuburl = 'http://' . $_SERVER['SERVER_NAME'] . '/deregister/' . $email_address. '/' . $hashedemail;
+        $unsuburl = 'http://' . $_SERVER['SERVER_NAME'] . '/unsubscribe_validation/' . $email_address. '/' . $hashedemail;
 
         $email = new Mail();
 
         // if sending of calendar invitation is enabled
         if ( $send_calendar_invite ) {
             // Create calendar invite/ICS
-            $ical_content = createIcalContent($next_event['start_dt'], $next_event['end_dt'], 'PORG meeting', $conf['rizemeet_meeting_topic'], $next_event['place'], $email_address);
+            $ical_content = createIcalContent($next_event['start_dt'], $next_event['end_dt'], $site['brand'] . ' meeting', $conf['rizemeet_meeting_topic'], $next_event['place'], $email_address);
 
             // attach ical event if requested
             $email->addStringAttachment($ical_content);
@@ -59,7 +59,7 @@ if (isset($_POST['rizemeet_email_text'])) {
         $ehtml .= '<p><a href="https://' . $_SERVER['SERVER_NAME'] . '">Visit the website</a> for more information.</p>';
         $ehtml .= '<p>To unsubscribe <a href="' . $unsuburl . '">click here</a> or visit the link ' . $unsuburl . '</p></body></html>';
 
-        if( $email->send($email_address, 'Honorable PORG', 'PORG news', $ehtml, strip_tags($ehtml)) ) {
+        if( $email->send($email_address, $site['brand'] . ' member', $site['brand'] . ' news', $ehtml, strip_tags($ehtml)) ) {
             $sent_count += 1;
         } else {
             echo '<div class="alert alert-danger" role="alert">Failed to send message to ' . $email_address . '</div>';
@@ -75,16 +75,13 @@ if (isset($_POST['rizemeet_email_text'])) {
 
 echo '<div class="col-lg-3 col-md-12"><p class="text-primary mb-1">Members on the mailing list: <b>' . $maillist->count() . '</b></p></div>';
 
-echo <<< END
-            <div class="col-lg-9 col-md-12">
-                <textarea id="rizemeet_email_text" name="rizemeet_email_text" rows="10" class="w-100">
-Dear PORG subscriber,
+echo '<div class="col-lg-9 col-md-12">' .
+       '<textarea id="rizemeet_email_text" name="rizemeet_email_text" rows="10" class="w-100">' . 
+        'Dear ' . $site['brand'] . ' subscriber,';
 
-
-END;
 
 // Create the template text for the email to send out
-echo 'The next PORG meet-up is on **' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . ' - ' . $next_event['etime'] . '**.' . "\n\n";
+echo 'The next ' . $site['brand'] . ' meet-up is on **' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . ' - ' . $next_event['etime'] . '**.' . "\n\n";
 
 echo 'The topic(s) for discussion are:  ' . "\n";
 

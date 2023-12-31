@@ -34,16 +34,6 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1">
     <sodipodi:guide
-       position="7.1293687,55.542107"
-       orientation="1,0"
-       id="guide5"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="0.92754185,55.287837"
-       orientation="1,0"
-       id="guide6"
-       inkscape:locked="false" />
-    <sodipodi:guide
        position="0.92754285,57.472497"
        orientation="0,-1"
        id="guide7"
@@ -62,24 +52,16 @@
      id="layer1"
      transform="translate(-47.747473,-76.289113)">
     <rect
-       style="fill:#ffffff;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;-inkscape-stroke:none;paint-order:stroke fill markers"
-       id="rect9"
-       width="6.8823757"
-       height="6.3656669"
-       x="48.334721"
-       y="76.876358" />
+       style="display:none;fill:#ffffff;stroke:none;stroke-width:1;stroke-miterlimit:10;paint-order:fill markers stroke"
+       id="rect1"
+       width="8.0568705"
+       height="7.5401621"
+       x="47.747475"
+       y="76.289116" />
     <path
-       id="rect8"
-       style="mix-blend-mode:normal;fill:#000000;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;-inkscape-stroke:none;paint-order:stroke fill markers"
-       d="m 47.747473,76.289113 v 7.540162 h 8.05687 v -7.540162 z m 0.587247,0.587248 h 6.882376 v 6.365667 H 48.33472 Z" />
-    <path
-       d="m 53.659035,82.92701 -1.257043,-2.597335 c 0.641009,-0.241419 0.998975,-0.790855 0.998975,-1.523436 0,-1.015625 -0.616035,-1.61501 -1.989625,-1.61501 h -1.148821 v 5.735781 h 0.757556 v -2.447489 h 0.516137 c 0.05827,0 0.116547,0 0.174821,-0.0083 l 1.115521,2.455813 z m -2.189419,-3.030224 h -0.449539 v -2.106172 h 0.38294 c 0.882428,0 1.19877,0.332992 1.19877,1.015625 0,0.749231 -0.332992,1.090547 -1.132171,1.090547 z"
-       id="text9"
-       style="font-size:8.32479px;line-height:0.8;font-family:'Fira Sans Compressed';-inkscape-font-specification:'Fira Sans Compressed';stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;paint-order:stroke fill markers"
-       aria-label="R" />
-    <path
-       style="fill:#ffffff;stroke:none;stroke-width:0.529167;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;-inkscape-stroke:none;paint-order:stroke fill markers"
-       d="m 52.401992,80.329675 -0.281301,-0.550233 0.283943,-0.225234 0.432197,0.532031 -0.0026,0.348802 -0.432283,-0.105366"
-       id="path9" />
+       id="path13"
+       style="fill:#000000;stroke:none;stroke-width:1;stroke-miterlimit:10;paint-order:fill markers stroke"
+       d="M 51.756123,77.035247 49.05508,81.71365 h 0.675355 9.5e-5 l 1.350332,-2.339012 0.337631,0.584753 -0.337631,0.584658 -1.012892,1.754449 h -1.35052 l -0.337631,0.584753 h 1.350521 1.350616 2.701043 1.350522 l -0.337631,-0.584848 -9.5e-5,-9.5e-5 h -1.35052 l -1.350428,-2.339107 0.337631,-0.584753 1.350521,2.339202 h 0.675261 l -1.350616,-2.339202 -0.337631,-0.584753 9.6e-5,-9.4e-5 -0.337631,-0.584753 -9.5e-5,9.4e-5 z m 9.4e-5,1.169601 0.33763,0.584847 -0.33763,0.584753 -0.337631,-0.584753 z m -9.4e-5,2.339296 1.012795,1.754164 h -2.025591 l 0.337629,-0.584753 z"
+       inkscape:label="rise" />
   </g>
 </svg>

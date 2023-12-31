@@ -2,7 +2,7 @@
     <div class="row align-items-md-stretch">
 
         <div class="col-md-6">
-            <div class="h-100 p-5 text-bg-dark rounded-3">
+            <div class="h-100 p-4 text-bg-dark rounded-3">
 
 <?php
 if (file_exists(SITE_PATH . 'introduction.md')) {
@@ -15,7 +15,7 @@ if (file_exists(SITE_PATH . 'introduction.md')) {
         </div>
 
         <div id='event_date' class="col-md-6">
-            <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+            <div class="h-100 p-4 bg-body-tertiary border rounded-3">
                 <h2>Next event</h2>
                 <p class="fs-4 text-warning">
 

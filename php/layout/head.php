@@ -18,7 +18,7 @@
             <header class="d-flex flex-wrap justify-content-center pb-4 mb-4 border-bottom">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <span class="me-3">
-                        <img src="/imgs/logos/<?php echo $site['logo_filename']; ?>" class="rounded-3" height="50">
+                        <img src="/imgs/logos/<?php echo $site['logo_filename']; ?>" class="rounded-3" height="50" style="background:white">
                     </span>
                     <span class="fs-4">
 <?php echo $site['brand']; ?>

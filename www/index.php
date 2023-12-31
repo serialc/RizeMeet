@@ -21,16 +21,20 @@ case 'documentation':
     include '../php/layout/documentation.php';
     break;
 
-case 'unsubscribe':
-    include '../php/layout/unsubscribe/unsubscribe_main.php';
+case 'unsubscribe_validation':
+    include '../php/mailinglist/unsubscribe_validation.php';
     break;
 
-case 'deregister':
-    include '../php/deregister.php';
+case 'unsubscribe':
+    include '../php/mailinglist/unsubscribe_main.php';
+    break;
+
+case 'subscribe_validation':
+    include '../php/mailinglist/subscribe_validation.php';
     break;
 
 case 'subscribe':
-    include '../php/mailinglist/subscribe.php';
+    include '../php/mailinglist/subscribe_process.php';
     break;
 
 case 'sessions':

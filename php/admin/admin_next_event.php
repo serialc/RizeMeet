@@ -19,14 +19,6 @@ if (isset($_POST['rizemeet_date'])) {
     $conf['rizemeet_date'] = $_POST['rizemeet_date'];
 }
 
-// update time
-if (isset($_POST['rizemeet_stime'])) {
-    $conf['rizemeet_stime'] = $_POST['rizemeet_stime'];
-}
-if (isset($_POST['rizemeet_etime'])) {
-    $conf['rizemeet_etime'] = $_POST['rizemeet_etime'];
-}
-
 // update location 
 if (isset($_POST['rizemeet_location'])) {
     $conf['rizemeet_location'] = $_POST['rizemeet_location'];
@@ -38,25 +30,18 @@ if (isset($_POST['rizemeet_meeting_topic'])) {
 }
 
 // save form based on updated $conf
-if (isset($_POST['rizemeet_date']) or isset($_POST['rizemeet_location']) or
-    isset($_POST['rizemeet_stime']) or isset($_POST['rizemeet_etime']) ) {
-
-    echo '<div class="col-12">';
-    if (file_put_contents(EVENT_DETAILS_FILE, json_encode($conf))) {
-        echo '<div class="alert alert-success mt-3" role="alert">Update successful</div>';
-    } else {
-        echo '<div class="alert alert-danger mt-3" role="alert">Failed to update</div>';
-    }
-    echo '</div>';
+if (isset($_POST['rizemeet_date']) or isset($_POST['rizemeet_location'])) {
+    saveEventDetails($conf);
 }
 
 // show the date form
-echo '<div class="col-12"><h1>Next Event - ' . $next_event['pretty_date'] . '</h1></div>';
+echo '<div class="col-12 alert alert-primary my-3 py-1" role="alert">' .
+    '<h2>Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime'] . '</h2></div>';
 
-echo '<div class="col-12"><h2>Date-time</h2></div>';
+echo '<div class="col-12"><h2>Date override</h2></div>';
 
 echo '<div class="col-lg-6">' .
-    '<p>You can override the date of the next event by selecting a futre date here.</p>' .
+    '<p>You can override the date of the next event by selecting a future date here.</p>' .
     '<p>Specify a regular meeting time or use the default.</p>' .
     '</div>';
 
@@ -67,19 +52,8 @@ echo '<div class="col-lg-6 col-md-9">'.
      '<label for="rizemeet_date" class="input-group-text meet_label">Select date</label>' .
      '<input type="date" class="form-control" id="rizemeet_date" name="rizemeet_date" value="' . $conf['rizemeet_date'] . '">' .
      '</div>';
-     echo '<div class="form-text mb-2">If blank, next second Monday of month is used</div>';
-
-echo '<div class="input-group">' .
-     '<label for="rizemeet_stime" class="input-group-text meet_label">Start time</label>' .
-     '<input type="time" class="form-control" id="rizemeet_stime" name="rizemeet_stime" value="' . $conf['rizemeet_stime'] . '">' .
-     '</div>';
-
-echo '<div class="input-group mt-1">
-     <label for="rizemeet_etime" class="input-group-text meet_label">End time</label>
-     <input type="time" class="form-control" id="rizemeet_etime" name="rizemeet_etime" value="' . $conf['rizemeet_etime'] . '">
-     </div>';
-     echo '<div class="form-text mb-2">If blank, default time of 12h00 - 13h00 is used</div>';
-echo '</div>';
+ echo '<div class="form-text mb-2">If blank, the regular event schedule is used</div>';
+ echo '</div>';
 
 // show the location form
 echo '<div class="col-12"><h2>Location</h2></div>';

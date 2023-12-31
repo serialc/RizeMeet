@@ -53,6 +53,12 @@ class MailingList {
         return hashPassword($this->sfc . $email);
     }
 
+    public function verifyEmail ($email, $passed_hashed_email)
+    {
+        // note that we salt the password before hashing, so do that here
+        return password_verify($this->sfc . $email, $passed_hashed_email);
+    }
+
     public function count ()
     {
         return count($this->list);
