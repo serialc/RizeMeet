@@ -18,6 +18,7 @@ define("ADMIN_SALT_FILE", "../php/admin/salt_file.txt");
 define("CONF_TEMPLATE", "../php/template_config.php");
 define("SITE_TOML", "../site/site.toml");
 define("SITE_TOML_TEMPLATE", "../php/template_site.toml");
+define("EVENT_ROOM_TEMPLATE", "../php/template_location.json");
 
 // logging
 define("LOGSDIR", "../logs/");

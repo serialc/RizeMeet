@@ -88,8 +88,11 @@ echo 'The topic(s) for discussion are:  ' . "\n";
 echo $conf['rizemeet_meeting_topic'];
 
 echo "\n\n" . 'The meeting will take place here:  ' . "\n";
-if ( isset($conf['rizemeet_location']) and file_exists( EVENT_ROOMS_FOLDER) ) {
-    echo json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true)['description'];
+
+// if the $conf is set and a corresponding location file exists
+if ( isset($conf['rizemeet_location']) and strcmp($conf['rizemeet_location'], "") !== 0 and file_exists(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']) ) {
+    $loc_file = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
+    echo $loc_file['description'];
 } else {
     echo 'No location set yet' . "\n";
 }

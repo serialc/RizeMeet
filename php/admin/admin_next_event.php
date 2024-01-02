@@ -7,12 +7,15 @@ namespace frakturmedia\RizeMeet;
 echo '<form action="." method="post">';
 echo '<div class="container"><div class="row">';
 
-// the possible locations
-if ( file_exists(EVENT_ROOMS_FOLDER) ) {
-    $rizemeet_locs = array_diff(scandir(EVENT_ROOMS_FOLDER), array('.', '..'));
-} else {
-    $rizemeet_locs = [];
+// load the possible meeting locations / rooms
+// Create the folder if it doesn't yet exist
+if ( !file_exists(EVENT_ROOMS_FOLDER) ) {
+    mkdir(EVENT_ROOMS_FOLDER);
+    // also add a template
+    copy(EVENT_ROOM_TEMPLATE, EVENT_ROOMS_FOLDER . 'template.json');
 }
+
+$rizemeet_locs = array_diff(scandir(EVENT_ROOMS_FOLDER), array('.', '..'));
 
 // update date
 if (isset($_POST['rizemeet_date'])) {
@@ -35,8 +38,8 @@ if (isset($_POST['rizemeet_date']) or isset($_POST['rizemeet_location'])) {
 }
 
 // show the date form
-echo '<div class="col-12 alert alert-primary my-3 py-1" role="alert">' .
-    '<h2>Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime'] . '</h2></div>';
+echo '<div class="col-12 my-3"><div class="alert alert-primary py-1" role="alert">' .
+    '<h2>Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime'] . '</h2></div></div>';
 
 echo '<div class="col-12"><h2>Date override</h2></div>';
 

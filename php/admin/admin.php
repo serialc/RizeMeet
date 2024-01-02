@@ -4,17 +4,6 @@
 
 namespace frakturmedia\RizeMeet;
 
-// To do
-echo <<< _END
-<div class="container"><div class="row"><div class="col">
-<h3>To do:</h3>
-<ul>
-<li>Sessions submit and edit form</li>
-</ul>
-</div> </div> </div>
-
-_END;
-
 // process .htpasswd username addition
 include('../php/admin/admin_add_user_processing.php');
 
@@ -43,7 +32,7 @@ include '../php/admin/admin_mailing_list_manager.php';
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 
 echo '<div class="container"><div class="row"><div class="col">' .
-     '<h1>Manage Administrators <img id="icon_manage_admin" class="intico" src="/imgs/icons/rise_white.svg"></h1>' .
+     '<h1>Manage Administrators <img id="icon_manage_admin" class="intico" src="/imgs/icons/rise.svg"></h1>' .
      '</div></div></div>';
 
 echo '<div id="form_manage_admin">';
