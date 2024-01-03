@@ -4,7 +4,7 @@
 
 namespace frakturmedia\RizeMeet;
 
-echo '<form action="." method="post">';
+echo '<form action=".#regular_event_results" method="post">';
 echo '<div class="container"><div class="row">';
 
 // load the possible meeting locations / rooms
@@ -61,13 +61,13 @@ echo '<div class="col-lg-6 col-md-9">'.
 // show the location form
 echo '<div class="col-12"><h2>Location</h2></div>';
 
-echo '<div class="col-lg-6">' .
+echo '<div class="col-md-3">' .
     '<p>Select a location.</p>' .
     '</div>';
 
 echo '<div class="col-md-3 d-lg-none"></div>';
 
-echo '<div class="col-lg-6 col-md-9">';
+echo '<div class="col-md-9 col-sm-12">';
 
 if (count($rizemeet_locs) === 0) {
     echo 'No locations available. See the <a href="/documentation">documentation</a>.';
@@ -90,7 +90,7 @@ foreach($rizemeet_locs as $fn) {
 echo '</div>';
 
 // Next topic
-echo '<div class="col-12"><h2>Next meeting topic</h2></div>';
+echo '<div class="col-12 mt-3"><h2>Next meeting topic</h2></div>';
 
 echo '<div class="col-lg-6">' .
     '<p>Describe information needed or of interest for next meeting.</p>' .

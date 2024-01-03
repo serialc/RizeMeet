@@ -7,5 +7,5 @@
 
 brand = "RizeMeet"
 full_name = "RizeMeet facilitates recurring meeting organization"
-logo_filename = "risemeet.svg"
+logo_filename = "/imgs/logos/risemeet.svg"
 contact_email = "to be defined"

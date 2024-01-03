@@ -14,6 +14,9 @@ $conf = loadEventDetails();
 $req = explode("/", ltrim($_SERVER['REQUEST_URI'], "/"));
 $page = $req[0];
 
+// select Parsedown from the global namespace
+$parsedown = new \Parsedown();
+
 include '../php/layout/head.php';
 
 switch ($page) {

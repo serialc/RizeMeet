@@ -131,7 +131,7 @@ foreach ($rscs as $rsc) {
         '<input type="checkbox" class="form-check-input file-selection" id="rsc_' . $rsc_index . '" name="rsc_' . $rsc_index. '" value="' . $rsc . '">' .
         '<label class="form-check-label w-100 file-selection-label" for="rsc_' . $rsc_index . '">' . 
         '<img src="/' . WWW_SITE_IMAGES_FOLDER . $rsc . '" width="100%" height="50" style="object-fit:cover;"></label>' .
-        '<br><div onclick="RM.copyToClipboard(\'/' . WWW_SITE_IMAGES_FOLDER . $rsc . '\')" class="btn">' . $rsc . '</div></div>';
+        '<br><div onclick="RM.copyToClipboard(\'/' . WWW_SITE_IMAGES_FOLDER . $rsc . '\')" class="btn" title="Click to copy path">' . $rsc . '</div></div>';
     $rsc_index += 1;
 }
 

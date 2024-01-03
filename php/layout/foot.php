@@ -1,9 +1,3 @@
-<?php
-
-namespace frakturmedia\RizeMeet;
-
-?>
-
 <div class="container footer">
     <footer class="pt-4 mt-5 text-body-secondary border-top">
         <div class="row">
@@ -40,7 +34,7 @@ if (file_exists(SITE_PATH . 'foot_right.md')) {
 
             <div class="col-12 mt-5 text-center" style="font-size: 0.7em">
                 <p>
-                    <a href="/unsubscribe/form">Unsubscribe</a>
+                    <a href="/unsubscribe/form">Mailing list unsubscribe</a>
                 <p>
                 <p>
                     <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> facilitates meeting management and coordination.<br>
@@ -55,6 +49,7 @@ echo $today->format('Y');
 
  Cyrille Médard de Chardon - <a href='LICENSE'>GNU General Public License</a>
                 </p>
+                <p><a class="text-decoration-none" href="/admin">&pi;</a></p>
             </div>
         </div>
     </footer>

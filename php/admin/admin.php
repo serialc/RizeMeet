@@ -4,6 +4,9 @@
 
 namespace frakturmedia\RizeMeet;
 
+// select Parsedown from the global namespace
+$parsedown = new \Parsedown();
+
 // process .htpasswd username addition
 include('../php/admin/admin_add_user_processing.php');
 
@@ -49,7 +52,7 @@ include('../php/admin/admin_images_manager.php');
 
 // divider, below is the public content
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
-echo '<div class="container"><div class="row"><div class="col"><h1>Manage Page Content</h1></div></div></div>';
+echo '<div class="container" id="page_content_edit"><div class="row"><div class="col"><h1>Manage Page Content</h1></div></div></div>';
 
 // show the welcome page MD content 
 include('../php/admin/admin_edit_content.php');

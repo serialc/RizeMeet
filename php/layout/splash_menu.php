@@ -4,10 +4,10 @@
             <div class="container-fluid hero p-5 rounded-3">
                 <div class="row">
                     <div class="col-lg-3 d-none d-lg-block">
-                        <img class="rounded-2" src="/imgs/logos/<?php echo $site['logo_filename']; ?>" style="width: 100%">
+                        <img class="rounded-2" src="<?php echo $site['logo_filename']; ?>" style="width: 100%">
                     </div>
                     <div class="col-lg-9 col-md-12">
-                        <img class="float-start me-2 mb-2 rounded-2 d-lg-none" src="/imgs/logos/<?php echo $site['logo_filename']; ?>" style="width: 30%">
+                        <img class="float-start me-2 mb-2 rounded-2 d-lg-none" src="<?php echo $site['logo_filename']; ?>" style="width: 30%">
                         <h1><?php echo $site['brand'];?></h1>
                         <p class="fs-4"><?php echo $site['full_name']; ?></p>
                     </div>
