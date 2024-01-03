@@ -1,6 +1,11 @@
 
 RM = {};
 
+RM.copyToClipboard = function(val)
+{
+    navigator.clipboard.writeText(val);
+};
+
 RM.toggle = function(tid)
 {
     let el = document.getElementById(tid);
@@ -13,14 +18,20 @@ RM.toggle = function(tid)
 
 RM.init = function()
 {
-    document.getElementById('form_manage_admin').style.display = "none";
-    document.getElementById('icon_manage_admin').addEventListener('click', function(){
-        RM.toggle('form_manage_admin');
-    });
+    let el;
 
-    document.getElementById('form_regular_schedule').style.display = "none";
-    document.getElementById('icon_regular_schedule').addEventListener('click', function(){
-        RM.toggle('form_regular_schedule');
-    });
+    el = document.getElementById('form_manage_admin');
+    if (el) {
+        el.style.display = "none";
+        document.getElementById('icon_manage_admin').addEventListener('click', function(){
+            RM.toggle('form_manage_admin');
+        });
+    }
+
+    // show the hash location panel
+    let hash = window.location.hash.slice(1);
+    if (hash !== "") {
+        document.getElementById(hash).style.display = "";
+    }
 }();
 

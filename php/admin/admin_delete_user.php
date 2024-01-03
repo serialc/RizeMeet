@@ -11,14 +11,18 @@ if (isset($_POST['rizemeet_admin_delete'])) {
 
     // check either isn't empty
     if ($duname == "") {
-        echo '<div class="container"><div class="row"><div class="col">Username</div></div></div>';
+        alertWarning("No username provided");
     } else {
         $htpasswd = new Htpasswd('admin/.htpasswd');
-        $htpasswd->deleteUser($duname);
+        if ($htpasswd->userExists($duname)) {
+            $htpasswd->deleteUser($duname);
+        } else {
+            alertWarning("User does not exist");
+        }
     }
 } 
 
-echo '<form action="." method="post">';
+echo '<form action=".#form_manage_admin" method="post">';
 echo '<div class="container"><div class="row">';
 
 echo '<div class="col-12"><h2>Delete admin</h2></div>';

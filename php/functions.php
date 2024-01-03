@@ -170,5 +170,21 @@ function saveEventDetails($conf)
     echo '</div>';
 }
 
+function alertMessage($msg, $type)
+{
+    echo '<div class="container mt-3"><div class="row"><div class="col"><div class="alert alert-' . $type . '" role="alert">' . $msg. '</div></div></div></div>';
+}
+
+function alertDanger($msg)
+{ alertMessage($msg, 'danger'); }
+
+function alertWarning($msg)
+{ alertMessage($msg, 'warning'); }
+
+function alertSuccess($msg)
+{ alertMessage($msg, 'success'); }
+
+function alertPrimary($msg)
+{ alertMessage($msg, 'primary'); }
 
 // EOF

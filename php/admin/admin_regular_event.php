@@ -48,8 +48,7 @@ if (!$errors and (isset($_POST['rizemeet_event_regularity']) or isset($_POST['ri
 }
 
 // show the date form
-echo '<div class="row"><div class="col-12"><h2>Regular event schedule ' .
-     '<img id="icon_regular_schedule" class="intico" src="/imgs/icons/rise.svg"></h2></div></div>';
+echo '<div class="row"><div class="col-12"><h2>Regular event schedule</h2></div></div>';
 
 echo '<div id="form_regular_schedule" class="row">' .
     '<div class="col-lg-6">' .

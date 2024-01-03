@@ -43,15 +43,18 @@ if (file_exists('admin/.htpasswd')) {
 }
 echo '</div>';
 
-// divider, below is the public content
-// DISABLED for now
-//echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
-//echo '<div class="container"><div class="row"><div class="col"><h1>Manage Content</h1></div></div></div>';
+// divider, below is the images manager
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+include('../php/admin/admin_images_manager.php');
 
-// show the Site TOML windows
+// divider, below is the public content
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+echo '<div class="container"><div class="row"><div class="col"><h1>Manage Page Content</h1></div></div></div>';
 
 // show the welcome page MD content 
-//include('../php/admin/admin_edit_content.php');
+include('../php/admin/admin_edit_content.php');
+
+// show the Site TOML 
 
 // modify sessions
 

@@ -13,8 +13,8 @@
     min-height: 50vh;
 }
 
-#when_is_porg img {
-    width: 100%;
+#event_date img {
+    max-width: 100%;
 }
 
 h1, h2, h3, h4, h5 {
@@ -91,4 +91,17 @@ pre code {
 .intico {
     height: 1em;
     cursor: pointer;
+}
+
+.file-selection {
+    display: none;
+}
+
+.file-selection-label {
+    border: 3px solid transparent;
+    border-radius: 3px;
+}
+
+:checked + .file-selection-label {
+    border: 3px solid #fff;
 }

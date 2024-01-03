@@ -16,7 +16,6 @@ date_default_timezone_set(TIMEZONE);
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
 
-
 // load or create ../php/config.php
 if ( !file_exists(CONF_FILE) ) {
     copy(CONF_TEMPLATE, CONF_FILE);

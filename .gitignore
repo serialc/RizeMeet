@@ -1,5 +1,6 @@
 vendor
 site/
+www/imgs/site
 composer.lock
 .htaccess
 .htpasswd

@@ -12,6 +12,7 @@ define("MAILING_ARCHIVE_FOLDER",        SITE_PATH . "ml_archive/");
 define("EVENT_ROOMS_FOLDER",            SITE_PATH . "rooms/");
 define("SESSIONS_DIR",                  SITE_PATH . "sessions/");
 define("CONF_FILE",                     SITE_PATH . "config.php");
+define("SITE_IMAGES_FOLDER",            SITE_PATH . "images/");
 
 // config file
 define("ADMIN_SALT_FILE", "../php/admin/salt_file.txt");
@@ -26,6 +27,7 @@ define("LOGSDIR", "../logs/");
 // other
 define("PASSWORD_HASH_COST", 10);
 define("TIMEZONE", 'CET');
+define("WWW_SITE_IMAGES_FOLDER", "imgs/site/");
 
 // tables if data is using DB
 define("TABLE_MAILINGLIST", "mailing_list");
