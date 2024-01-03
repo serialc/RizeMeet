@@ -6,7 +6,7 @@ if (count($req) != 2) {
     return;
 }
 
-echo '<div class="container"><div class="row"><div class="col">';
+echo '<div id="main_content" class="container"><div class="row"><div class="col">';
 
 switch ($req[1]) {
 case 'form':

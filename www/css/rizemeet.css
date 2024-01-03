@@ -9,11 +9,11 @@
     --col-bq-regular: #70ad47;
 }
 
-#main {
+#main_content {
     min-height: 50vh;
 }
 
-#event_date img {
+#main_content img, #event_date img {
     max-width: 100%;
 }
 

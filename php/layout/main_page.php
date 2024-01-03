@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row align-items-md-stretch">
 
-        <div class="col-md-6">
+        <div id="main_content" class="col-md-6">
             <div class="h-100 p-4 text-bg-dark rounded-3">
 
 <?php
