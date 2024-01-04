@@ -170,21 +170,34 @@ function saveEventDetails($conf)
     echo '</div>';
 }
 
-function alertMessage($msg, $type)
+function alertMessage($msg, $type, $container)
 {
-    echo '<div class="container mt-3"><div class="row"><div class="col"><div class="alert alert-' . $type . '" role="alert">' . $msg. '</div></div></div></div>';
+    if ($container) {
+        echo '<div class="container mt-3"><div class="row">';
+    }
+    echo '<div class="col"><div class="alert alert-' . $type . '" role="alert">' . $msg. '</div></div>';
+    if ($container) {
+        echo '</div></div>';
+    }
 }
 
-function alertDanger($msg)
-{ alertMessage($msg, 'danger'); }
+function alertDanger($msg, $container=true)
+{ alertMessage($msg, 'danger', $container); }
 
-function alertWarning($msg)
-{ alertMessage($msg, 'warning'); }
+function alertWarning($msg, $container=true)
+{ alertMessage($msg, 'warning', $container); }
 
-function alertSuccess($msg)
-{ alertMessage($msg, 'success'); }
+function alertSuccess($msg, $container=true)
+{ alertMessage($msg, 'success', $container); }
 
-function alertPrimary($msg)
-{ alertMessage($msg, 'primary'); }
+function alertPrimary($msg, $container)
+{ alertMessage($msg, 'primary', $container); }
+
+function checkDatetimeValidity($rdt)
+{
+    // make sure it's a valid date
+    $dt = \DateTime::createFromFormat("Y-m-d", $rdt);
+    return $dt !== false && $dt::getLastErrors() === false;
+}
 
 // EOF

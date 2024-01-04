@@ -1,6 +1,5 @@
 <div class="container">
     <div class="row align-items-md-stretch">
-
         <div id="main_content" class="col-md-6">
             <div class="h-100 p-4 text-bg-dark rounded-3">
 
@@ -23,7 +22,7 @@ if (file_exists(SITE_PATH . 'introduction.md')) {
 echo $next_event['pretty_date'] . '<br>' . $next_event['stime'] . ' - ' . $next_event['etime'] . '</p>';
 ?>
 
-                        <h3>Location</h3>
+                <h3>Location</h3>
 
 <?php
 // show the location based on $conf
@@ -35,8 +34,8 @@ if ( isset($conf['rizemeet_location']) and file_exists(EVENT_ROOMS_FOLDER . $con
 }
 ?>
 
-                        <h3 class="mt-5">Next meeting topic</h3>
-                        <div>
+                <h3 class="mt-5">Next meeting topic</h3>
+                <div>
 
 <?php
 // show the suggested next meeting topics
@@ -46,9 +45,8 @@ if ( $conf['rizemeet_meeting_topic'] ) {
     echo 'Free form discussion';
 }
 ?>
-
+                </div>
             </div>
         </div>
-
     </div>
 </div>

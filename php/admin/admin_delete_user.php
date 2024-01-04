@@ -37,12 +37,11 @@ echo '</div>';
 echo '<div class="col-md-3 d-lg-none"></div>';
 
 echo '<div class="col-lg-6 col-md-9">';
+
 echo '<div class="input-group">' .
      '<label for="rizemeet_admin_delete" class="input-group-text meet_label">Username</label>' .
      '<input type="input" class="form-control" id="rizemeet_admin_delete" name="rizemeet_admin_delete">' .
-     '</div>';
-echo '<div class="col-12 text-end">' .
-     '<button type="submit" class="btn btn-primary mt-2">Delete</button>' .
+     '<button type="submit" class="btn btn-danger">Delete</button>' .
      '</div>';
 echo '</div>';
 

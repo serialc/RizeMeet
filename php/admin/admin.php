@@ -32,6 +32,11 @@ include('../php/admin/admin_next_event.php');
 include '../php/admin/admin_mailing_list_manager.php';
 
 // divider, below is the infrequent updates
+// Manage sessions
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+include('../php/admin/admin_manage_sessions.php');
+
+// Manage Administrators
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 
 echo '<div class="container"><div class="row"><div class="col">' .

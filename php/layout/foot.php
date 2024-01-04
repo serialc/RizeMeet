@@ -49,11 +49,11 @@ echo $today->format('Y');
 
  Cyrille Médard de Chardon - <a href='LICENSE'>GNU General Public License</a>
                 </p>
-                <p class="text-end"><a class="text-decoration-none" href="/admin" style="color: #888">&pi;</a></p>
             </div>
         </div>
     </footer>
 </div>
+<p class="text-end m-4" style="font-size: 0.7em"><a class="text-decoration-none" href="/admin" style="color: #888">&pi;</a></p>
 <script src="/js/rm.js"></script>
 </body>
 </html>

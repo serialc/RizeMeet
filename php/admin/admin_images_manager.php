@@ -88,6 +88,7 @@ echo <<< END
    <p>Refer to your uploaded images as being in the <code>/imgs/site/</code> directory.</p>
   </div>
 
+  <div class="d-lg-none col-md-3"></div>
   <div class="col-lg-6 col-md-9">
    <form action=".#upload_images" enctype="multipart/form-data" method="post">
     <input type="hidden" name="MAX_FILE_SIZE" value="3000000">

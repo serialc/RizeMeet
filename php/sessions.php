@@ -17,7 +17,7 @@ if (count($req) > 1 ) {
     }
 
     // get the session data (in md)
-    $session_md = file_get_contents('../sessions/' . $mdf);
+    $session_md = file_get_contents(SESSIONS_DIR . $mdf);
 
     // convert the md to html
     $Parsedown = new Parsedown();
@@ -47,7 +47,7 @@ if (count($req) > 1 ) {
     foreach($sess as $s) {
         $strdate = pathinfo($s, PATHINFO_FILENAME);
         $sdate = new DateTime($strdate);
-        echo '<div class="col-md-3 col-sm-4 mb-3">';
+        echo '<div class="col-md-4 col-sm-6 mb-3">';
         echo '<a href="/sessions/' . $strdate . '" class="text-decoration-none">';
         echo '<div class="h-100 py-3 px-2 bg-body-tertiary border rounded-3 text-center">';
         echo $sdate->format('l, M d, Y');
