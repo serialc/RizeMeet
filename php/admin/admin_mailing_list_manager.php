@@ -18,7 +18,7 @@ echo '<div class="container mt-2">
 
 // process the email text, send it to the mailing list
 if (isset($_POST['rizemeet_email_text'])) {
-    echo '<div class="row"><div class="col-12">';
+    echo '<div class="col-12">';
 
     $send_calendar_invite = false;
     if ( isset($_POST['send_calendar_invite']) and strcmp('on', $_POST['send_calendar_invite']) === 0 ) {
@@ -45,8 +45,6 @@ if (isset($_POST['rizemeet_email_text'])) {
 
             // attach ical event if requested
             $email->addStringAttachment($ical_content);
-
-            print("CALENDAR INVITE SENT");
         }
 
         // select Parsedown from the global namespace
@@ -67,10 +65,10 @@ if (isset($_POST['rizemeet_email_text'])) {
     }
 
     // show count of emails successfully sent
-    echo '<div class="alert alert-success" role="alert">' . $sent_count . ' emails sent</div>';
+    echo '<div class="alert alert-success" role="alert">Emails sent: ' . $sent_count . '</div>';
 
     // close the col and row
-    echo '</div></div>';
+    echo '</div>';
 }
 
 echo '<div class="col-lg-3 col-md-12"><p class="text-primary mb-1">Members on the mailing list: <b>' . $maillist->count() . '</b></p></div>';

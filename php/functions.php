@@ -8,10 +8,8 @@ use Eluceo\iCal\Domain\Entity\Event;
 use Eluceo\iCal\Domain\ValueObject\UniqueIdentifier;
 
 use Eluceo\iCal\Domain\ValueObject\Timestamp;
-
 use Eluceo\iCal\Domain\ValueObject\TimeSpan;
 use Eluceo\iCal\Domain\ValueObject\DateTime;
-
 use Eluceo\iCal\Domain\ValueObject\Uri;
 
 use Eluceo\iCal\Domain\ValueObject\Location;

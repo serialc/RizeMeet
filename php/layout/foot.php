@@ -47,7 +47,7 @@ echo $today->format('Y');
 
 ?>
 
- Cyrille Médard de Chardon - <a href='LICENSE'>GNU General Public License</a>
+ RizeMeet - <a href='LICENSE'>GNU General Public License</a>
                 </p>
             </div>
         </div>

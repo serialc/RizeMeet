@@ -29,7 +29,7 @@ if (isset($_POST['rizemeet_event_regularity'])) {
     } else {
         echo '<div class="row"><div class="col alert alert-danger mt-3" role="alert">' .
             '<p>Event date is invalid. Try the following:</p>' . 
-            '<ul><li>Mondays</li><li>second Wednesday</li><li>last Friday</li><li>first day of this month</li></ul></div></div>';
+            '<ul><li>Mondays</li><li>second Wednesday of this month</li><li>last Friday</li><li>first day of this month</li></ul></div></div>';
         $errors = true;
     }
 }
