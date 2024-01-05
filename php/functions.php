@@ -161,9 +161,9 @@ function saveEventDetails($conf)
 {
     echo '<div id="regular_event_results" class="col-12">';
     if (file_put_contents(EVENT_DETAILS_FILE, json_encode($conf))) {
-        alertSuccess('Update successful');
+        alertSuccess('Update successful', false);
     } else {
-        alertDanger('Update failed');
+        alertDanger('Update failed', false);
     }
     echo '</div>';
 }

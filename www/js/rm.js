@@ -20,6 +20,14 @@ RM.init = function()
 {
     let el;
 
+    el = document.getElementById('manage_locations_content');
+    if (el) {
+        el.style.display = "none";
+        document.getElementById('icon_manage_locations').addEventListener('click', function(){
+            RM.toggle('manage_locations_content');
+        });
+    }
+
     el = document.getElementById('manage_page_content');
     if (el) {
         el.style.display = "none";

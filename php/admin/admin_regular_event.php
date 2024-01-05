@@ -72,7 +72,7 @@ echo '<div class="input-group mt-1">
      <input type="time" class="form-control" id="rizemeet_etime" name="rizemeet_etime" value="' . $conf['rizemeet_etime'] . '">
      </div>';
 echo '<div class="form-text mb-2">If blank, default time of 12h00 - 13h00 is used</div>';
-echo '<div class="col-12 text-end">' .
+echo '<div class="col-12 text-end mb-3">' .
     '<button type="submit" class="btn btn-primary mt-2">Save</button>' .
      '</div>';
 echo '</div>';

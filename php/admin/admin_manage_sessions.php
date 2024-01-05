@@ -36,9 +36,9 @@ if (isset($_POST['rizemeet_new_session'])) {
 $sess = array_diff(scandir(SESSIONS_DIR), array('.', '..'));
 echo <<< END
 <div class="container"><div class="row">
-<div class="col-12"><h2>Edit session</h2></div>
-<div class="col-md-3 col-sm-4"><p>Select session to edit.</p></div>
-<div class="col-md-9 col-sm-8"><div class="row">
+  <div class="col-12"><h2>Edit session</h2></div>
+  <div class="col-md-3 col-sm-4"><p>Select session to edit.</p></div>
+  <div class="col-md-9 col-sm-8"><div class="row">
 END;
 
 foreach ($sess as $s) {
@@ -61,7 +61,8 @@ if (isset($_POST['rizemeet_session_edit'])) {
 
 
 // show the session editing form
-echo '<div class="col-12">';
+echo '<div class="row"><div class="col-lg-3"></div>';
+echo '<div class="col-9">';
 // If a session is selected show the contents in a textarea
 if (isset($_GET['session'])) {
     // get just the basename, remove the extension
@@ -79,7 +80,7 @@ if (isset($_GET['session'])) {
         alertDanger("Filename is not valid!", false);
     }
 }
-echo '</div></div>';
+echo '</div></div></div>';
 
 
 // Display form to create a new session

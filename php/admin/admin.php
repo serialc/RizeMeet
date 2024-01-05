@@ -30,6 +30,10 @@ include('../php/admin/admin_next_event.php');
 // show the form to email registrants with info on next event
 include '../php/admin/admin_mailing_list_manager.php';
 
+// Manage locations
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+include '../php/admin/admin_location_manager.php';
+
 // divider, below is the infrequent updates
 // Manage sessions
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
