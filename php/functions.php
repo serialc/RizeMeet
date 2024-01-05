@@ -161,9 +161,9 @@ function saveEventDetails($conf)
 {
     echo '<div id="regular_event_results" class="col-12">';
     if (file_put_contents(EVENT_DETAILS_FILE, json_encode($conf))) {
-        echo '<div class="alert alert-success mt-3" role="alert">Update successful</div>';
+        alertSuccess('Update successful');
     } else {
-        echo '<div class="alert alert-danger mt-3" role="alert">Failed to update</div>';
+        alertDanger('Update failed');
     }
     echo '</div>';
 }
@@ -188,7 +188,7 @@ function alertWarning($msg, $container=true)
 function alertSuccess($msg, $container=true)
 { alertMessage($msg, 'success', $container); }
 
-function alertPrimary($msg, $container)
+function alertPrimary($msg, $container=true)
 { alertMessage($msg, 'primary', $container); }
 
 function checkDatetimeValidity($rdt)

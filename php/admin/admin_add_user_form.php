@@ -6,7 +6,7 @@ namespace frakturmedia\RizeMeet;
 
 use Htpasswd;
 
-echo '<form action=".#form_manage_admin" method="post">';
+echo '<form action=".#manage_admin" method="post">';
 echo '<div class="container"><div class="row">';
 
 echo '<div class="col-12"><h2>Add admin</h2></div>';

@@ -13,8 +13,7 @@ if (isset($_POST['rizemeet_admin_username']) and isset($_POST['rizemeet_admin_pw
 
     // check either isn't empty
     if ($uname == "" or $upass == "") {
-        echo '<div class="container"><div class="row"><div class="col">Username or password is empty';
-        echo '</div></div></div>';
+        alertWarning('Username or password is empty');
     } else {
         // create .htpasswd file if it doesn't exist
         if(!file_exists('admin/.htpasswd')) {
@@ -22,6 +21,8 @@ if (isset($_POST['rizemeet_admin_username']) and isset($_POST['rizemeet_admin_pw
         }
         $htpasswd = new Htpasswd('admin/.htpasswd');
         $htpasswd->addUser($uname, $upass, Htpasswd::ENCTYPE_SHA1);
+
+        alertSuccess('User added');
     }
 } 
 

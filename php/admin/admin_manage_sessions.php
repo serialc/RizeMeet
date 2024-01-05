@@ -9,9 +9,10 @@ if (!file_exists(SESSIONS_DIR)) { mkdir(SESSIONS_DIR); }
 
 
 // heading for session management
-echo '<div id="manage_sessions" class="container"><div class="row"><div class="col">' .
-     '<h1>Manage Sessions</h1></div></div></div>';
+echo '<div id="manage_sessions" class="container mb-2"><div class="row"><div class="col">' .
+     '<h1>Manage Sessions <img id="icon_manage_session" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
 
+echo '<div id="manage_sessions_content">';
 
 // process new session request
 if (isset($_POST['rizemeet_new_session'])) {
@@ -33,9 +34,13 @@ if (isset($_POST['rizemeet_new_session'])) {
 
 // List the sessions that exist
 $sess = array_diff(scandir(SESSIONS_DIR), array('.', '..'));
-echo '<div class="container"><div class="row">';
-echo '<div class="col-md-3 col-sm-4"><p>Select session to edit.</p></div>';
-echo '<div class="col-md-9 col-sm-8"><div class="row">';
+echo <<< END
+<div class="container"><div class="row">
+<div class="col-12"><h2>Edit session</h2></div>
+<div class="col-md-3 col-sm-4"><p>Select session to edit.</p></div>
+<div class="col-md-9 col-sm-8"><div class="row">
+END;
+
 foreach ($sess as $s) {
     echo '<div class="col-md-4 col-sm-6 mb-3"><a href=".?session=' . $s . '#manage_sessions"><button class="btn btn-secondary w-100">' . $s . '</button></a></div>';
 }
@@ -81,7 +86,7 @@ echo '</div></div>';
 echo <<< END
 <div class="container mt-3">
  <div class="row">
-  <div class="col-12"><h2>New session</div>
+  <div class="col-12"><h2>Create a new session</div>
   <div class="col-md-3 col-lg-6">
    <p>Provide the new session name.</p>
   </div>
@@ -98,5 +103,8 @@ echo <<< END
  </div>
 </div>
 END;
+
+// end of sessions content
+echo '</div>';
 
 // EOF

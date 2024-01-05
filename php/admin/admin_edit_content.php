@@ -4,6 +4,10 @@
 
 namespace frakturmedia\RizeMeet;
 
+echo '<div class="container" id="manage_page"><div class="row"><div class="col"><h1>Manage Page Content <img id="icon_manage_page" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+
+echo '<div id="manage_page_content">';
+
 $panels = [
     "Introduction" => "introduction",
     "Left footer" => "foot_left",
@@ -26,7 +30,7 @@ foreach ( $panels as $ptitle => $pfile ) {
 
 // for each panel show the form
 foreach ( $panels as $ptitle => $pfile ) {
-    echo '<form action=".#page_content_edit" method="post">';
+    echo '<form action=".#manage_page" method="post">';
     echo '<div class="container"><div class="row mb-3">';
     echo '<div class="col-lg-3 col-md-12"><h2>' . $ptitle . '</h2></div>';
     echo '<div class="col-md-3 d-lg-none"></div>';
@@ -44,6 +48,7 @@ foreach ( $panels as $ptitle => $pfile ) {
     echo '</div></div></form>';
 }
 
-
+// manage_page_content end
+echo '</div>';
 
 // EOF

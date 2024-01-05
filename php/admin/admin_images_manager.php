@@ -5,14 +5,19 @@
 namespace frakturmedia\RizeMeet;
 
 echo <<< END
-<div id="upload_images" class="container">
+<div id="manage_images" class="container">
  <div class="row">
   <div class="col-12">
-   <h1>Upload images</h1>
+   <h1>
+    Manage images 
+    <img id="icon_manage_images" class="intico" src="/imgs/icons/rise.svg">
+   </h1>
   </div>
  </div>
 </div>
 END;
+
+echo '<div id="manage_images_content">';
 
 // check if the necessary folders exist, create them if not
 if (!file_exists(SITE_IMAGES_FOLDER)) {
@@ -84,13 +89,14 @@ if (isset($_FILES["uploaded_file"])) {
 echo <<< END
 <div id="upload_images" class="container">
  <div class="row">
+  <div class="col-12"><h2>Upload an image or resource</h2></div>
   <div class="col-lg-6">
    <p>Refer to your uploaded images as being in the <code>/imgs/site/</code> directory.</p>
   </div>
 
   <div class="d-lg-none col-md-3"></div>
   <div class="col-lg-6 col-md-9">
-   <form action=".#upload_images" enctype="multipart/form-data" method="post">
+   <form action=".#manage_images" enctype="multipart/form-data" method="post">
     <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
     <div class="input-group">
      <input class="form-control" type="file" name="uploaded_file">
@@ -122,8 +128,8 @@ if (isset($_POST['delete_rscs'])) {
 }
 
 // list the images that are uploaded
-echo '<form action=".#upload_images" enctype="multipart/form-data" method="post">';
-echo '<div class="container"><div class="row"><div class="col-12 mt-3 mb-2"><h3>Uploaded images</h3></div>';
+echo '<form action=".#manage_images" enctype="multipart/form-data" method="post">';
+echo '<div class="container"><div class="row"><div class="col-12 mt-3 mb-2"><h2>Images uploaded</h2></div>';
 
 // list rscs so that they can be deleted if wished
 $rsc_index = 0;
@@ -142,5 +148,8 @@ echo '<div class="col-12 text-end">' .
     '</div>';
 echo '</div></div>';
 echo '</form>';
+
+// end of manages_images_content
+echo '</div>';
 
 // EOF

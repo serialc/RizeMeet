@@ -16,13 +16,14 @@ if (isset($_POST['rizemeet_admin_delete'])) {
         $htpasswd = new Htpasswd('admin/.htpasswd');
         if ($htpasswd->userExists($duname)) {
             $htpasswd->deleteUser($duname);
+            alertSuccess('User ' . $duname . ' deleted');
         } else {
-            alertWarning("User does not exist");
+            alertWarning('User ' . $duname . ' does not exist');
         }
     }
 } 
 
-echo '<form action=".#form_manage_admin" method="post">';
+echo '<form action=".#manage_admin" method="post">';
 echo '<div class="container"><div class="row">';
 
 echo '<div class="col-12"><h2>Delete admin</h2></div>';

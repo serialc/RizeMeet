@@ -60,12 +60,12 @@ if (isset($_POST['rizemeet_email_text'])) {
         if( $email->send($email_address, $site['brand'] . ' member', $site['brand'] . ' news', $ehtml, strip_tags($ehtml)) ) {
             $sent_count += 1;
         } else {
-            echo '<div class="alert alert-danger" role="alert">Failed to send message to ' . $email_address . '</div>';
+            alertDanger('Failed to send message to ' . $email_address, false);
         }
     }
 
     // show count of emails successfully sent
-    echo '<div class="alert alert-success" role="alert">Emails sent: ' . $sent_count . '</div>';
+    alertSuccess('Emails sent: ' . $send_count, false);
 
     // close the col and row
     echo '</div>';

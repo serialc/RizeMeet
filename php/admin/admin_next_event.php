@@ -38,8 +38,7 @@ if (isset($_POST['rizemeet_date']) or isset($_POST['rizemeet_location'])) {
 }
 
 // show the date form
-echo '<div class="col-12 my-3"><div class="alert alert-primary py-1" role="alert">' .
-    '<h2>Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime'] . '</h2></div></div>';
+alertPrimary('Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime']);
 
 echo '<div class="col-12"><h2>Date override</h2></div>';
 

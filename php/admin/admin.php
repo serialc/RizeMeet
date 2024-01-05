@@ -7,12 +7,11 @@ namespace frakturmedia\RizeMeet;
 // select Parsedown from the global namespace
 $parsedown = new \Parsedown();
 
-// process .htpasswd username addition
-include('../php/admin/admin_add_user_processing.php');
-
 // check if there's an .htpasswd file 
 // if not, show the form to create it
 if (!file_exists('admin/.htpasswd')) {
+    // process .htpasswd username addition
+    include('../php/admin/admin_add_user_processing.php');
     include('../php/admin/admin_add_user_form.php');
 }
 
@@ -39,11 +38,14 @@ include('../php/admin/admin_manage_sessions.php');
 // Manage Administrators
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 
-echo '<div class="container"><div class="row"><div class="col">' .
+echo '<div id="manage_admin" class="container"><div class="row"><div class="col">' .
      '<h1>Manage Administrators <img id="icon_manage_admin" class="intico" src="/imgs/icons/rise.svg"></h1>' .
      '</div></div></div>';
 
-echo '<div id="form_manage_admin">';
+// process .htpasswd username addition
+include('../php/admin/admin_add_user_processing.php');
+
+echo '<div id="manage_admin_content">';
 // show the admin access controls
 if (file_exists('admin/.htpasswd')) {
     include('../php/admin/admin_add_user_form.php');
@@ -57,13 +59,6 @@ include('../php/admin/admin_images_manager.php');
 
 // divider, below is the public content
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
-echo '<div class="container" id="page_content_edit"><div class="row"><div class="col"><h1>Manage Page Content</h1></div></div></div>';
-
-// show the welcome page MD content 
 include('../php/admin/admin_edit_content.php');
-
-// show the Site TOML 
-
-// modify sessions
 
 // EOF
