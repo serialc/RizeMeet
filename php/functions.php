@@ -28,6 +28,7 @@ function determineNextEvent($conf)
 
     // get today's date
     $today = new \DateTime(date('Y-m-d'));
+    $is_today = false;
 
     // if the requested date is in the future, or today, display that
     if (strcmp($conf['rizemeet_date'], '') !== 0 and ($req_date == $today or $req_date > $today)) {
@@ -40,8 +41,6 @@ function determineNextEvent($conf)
         $nextmonth = (clone $today)->modify('first day of next month')->modify($conf['rizemeet_regular']);
 
         // determine which date is the appropriate/next one (this month's or next month's)
-        $is_today = false;
-
         if ($today < $thismonth) {
             $event_date = $thismonth;
         } elseif ($today == $thismonth) {

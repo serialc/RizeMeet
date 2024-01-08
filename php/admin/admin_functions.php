@@ -158,5 +158,32 @@ function checkDatetimeValidity($rdt)
     return $dt !== false && $dt::getLastErrors() === false;
 }
 
+function parseFileUploadForErrors($fup)
+{
+    switch ($fup["error"]) {
+    case 0:
+        // okay
+        return false;
+        break;
+
+    case 1:
+        alertDanger("File is too large according to <code>upload_max_filesize</code>");
+        $file_errors = true;
+        break;
+
+    case 2:
+        alertDanger("File is too large according to limit specified in form");
+        $file_errors = true;
+        break;
+
+    case 4:
+        alertDanger("No file selected to upload");
+        $file_errors = true;
+        break;
+    }
+    return true;
+}
+
+
 
 // EOF

@@ -35,7 +35,34 @@ if (isset($_POST['create_archive'])) {
 }
 
 if (isset($_FILES['uploaded_backup_file'])) {
-    echo 'UPLOAD AND PROCESS ARCHIVE';
+    $fup = $_FILES["uploaded_backup_file"];
+
+    $file_errors = parseFileUploadForErrors($fup);
+
+    // clean up the filename (remove spaces)
+    $filename = str_replace(' ', '_', $fup['name']);
+    $filepath = $fup['tmp_name'];
+    $filesize = filesize($filepath);
+
+    // errors
+    // was a file actually uploaded
+    if ( $filesize === 0 ) {
+        alertDanger("No file selected to upload");
+        $file_errors = true;
+    }
+
+    if (!$file_errors) {
+        $zip = new ZipArchive;
+        if ($zip->open($filepath) === TRUE) {
+            $zip->extractTo(SITE_PATH);
+            $zip->close();
+            alertSuccess("File uploaded and extracted successfully. <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/admin\">Refresh to see changes</a>");
+        } else {
+            alertDanger("Failed to extract the uploaded file");
+        }
+    } else {
+        alertDanger("Failed to save the uploaded file");
+    }
 }
 
 // show forms

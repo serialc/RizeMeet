@@ -34,27 +34,7 @@ if (!file_exists(WWW_SITE_IMAGES_FOLDER)) {
 if (isset($_FILES["uploaded_file"])) {
     $fup = $_FILES["uploaded_file"];
 
-    $file_errors = false;
-    switch ($fup["error"]) {
-    case 0:
-        // okay
-        break;
-
-    case 1:
-        alertDanger("File is too large according to <code>upload_max_filesize</code>");
-        $file_errors = true;
-        break;
-
-    case 2:
-        alertDanger("File is too large according to limit specified in form");
-        $file_errors = true;
-        break;
-
-    case 4:
-        alertDanger("No file selected to upload");
-        $file_errors = true;
-        break;
-    }
+    $file_errors = parseFileUploadForErrors($fup);
 
     // clean up the filename (remove spaces)
     $filename = str_replace(' ', '_', $fup['name']);
