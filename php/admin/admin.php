@@ -15,7 +15,7 @@ if (!file_exists('admin/.htpasswd')) {
     include('../php/admin/admin_add_user_form.php');
 }
 
-echo '<div class="container"><div class="row"><div class="col"><h1>Manage Event</h1></div></div></div>';
+echo '<div class="container"><div class="row"><div class="col"><h1>Event</h1></div></div></div>';
 
 // show the form for the regular meeting time
 include('../php/admin/admin_regular_event.php');
@@ -43,7 +43,7 @@ include('../php/admin/admin_manage_sessions.php');
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 
 echo '<div id="manage_admin" class="container"><div class="row"><div class="col">' .
-     '<h1>Manage Administrators <img id="icon_manage_admin" class="intico" src="/imgs/icons/rise.svg"></h1>' .
+     '<h1>Administrators <img id="icon_manage_admin" class="intico" src="/imgs/icons/rise.svg"></h1>' .
      '</div></div></div>';
 
 // process .htpasswd username addition
@@ -64,5 +64,9 @@ include('../php/admin/admin_images_manager.php');
 // divider, below is the public content
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 include('../php/admin/admin_edit_content.php');
+
+// divider, below is the backup
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+include('../php/admin/admin_manage_backups.php');
 
 // EOF

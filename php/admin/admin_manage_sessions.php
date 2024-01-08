@@ -10,7 +10,7 @@ if (!file_exists(SESSIONS_DIR)) { mkdir(SESSIONS_DIR); }
 
 // heading for session management
 echo '<div id="manage_sessions" class="container mb-2"><div class="row"><div class="col">' .
-     '<h1>Manage Sessions <img id="icon_manage_session" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+     '<h1>Sessions <img id="icon_manage_session" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
 
 echo '<div id="manage_sessions_content">';
 

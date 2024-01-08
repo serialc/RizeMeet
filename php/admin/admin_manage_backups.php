@@ -1,0 +1,83 @@
+<?php
+// Filename: ../php/admin/admin_manage_backups.php
+// Purpose: Creates backups of ../site and also can be used to restore ../site form backup
+
+// display form
+echo '<div class="container" id="manage_backup"><div class="row"><div class="col"><h1>Backups <img id="icon_manage_backup" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+
+// the container that has visibility toggled
+echo '<div id="manage_backup_content">';
+
+// processing
+if (isset($_POST['create_archive'])) {
+
+    // create backup directory if possible
+    if (!file_exists(BACKUP_DIR)) {
+        if (!is_writable('..')) {
+            alertDanger("Permission to create backup directory is denied");
+            return;
+        } 
+        mkdir(BACKUP_DIR);
+    }
+    if (!is_writable(BACKUP_DIR)) {
+        alertDanger("Permission to write to backup directory is denied");
+        return;
+    }
+
+    $zfn = $site['brand'] . '_' . date('Y-m-d') . '.zip';
+    $zf = ZipFolder(SITE_PATH, BACKUP_DIR . $zfn);
+
+    if ($zf) {
+        alertSuccess("Site backup ready for <a href=\"./?download=latest\">download</a>");
+    } else {
+        alertDanger("Failed to compress site data");
+    }
+}
+
+if (isset($_FILES['uploaded_backup_file'])) {
+    echo 'UPLOAD AND PROCESS ARCHIVE';
+}
+
+// show forms
+echo <<< END
+<form action=".#manage_backup" method="post">
+ <div class="container">
+  <div class="row">
+   <div class="col-12"><h2>Create backup</h2></div>
+   <div class="col-lg-6 col-md-12">
+    <p>This will generate a zip file with your customized content inside.</p>
+   </div>
+   <div class="col-md-3 d-lg-none"></div>
+   <div class="col-lg-6 col-md-9 text-end">
+    <input type="hidden" name="create_archive" value="1">
+    <button type="submit" class="btn btn-primary mt-2">Create backup</button>
+   </div>
+  </div>
+ </div>
+</form>
+END;
+
+echo <<< END
+<form action=".#manage_backup" enctype="multipart/form-data" method="post">
+ <div class="container">
+  <div class="row">
+   <div class="col-12"><h2>Load backup</h2></div>
+   <div class="col-lg-6 col-md-12">
+    <p>Upload a past archive (backup) to initialize or overwrite existing site.</p>
+   </div>
+   <div class="col-md-3 d-lg-none"></div>
+   <div class="col-lg-6 col-md-9 text-end">
+    <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+    <div class="input-group">
+     <input class="form-control" type="file" name="uploaded_backup_file">
+     <input type="submit" class="btn btn-danger" value="Upload">
+    </div><div class="form-text mb-2">Server settings: <code>upload_max_filesize</code> = 2M, <code>post_max_size</code> = 8M</div></form>
+   </div>
+  </div>
+ </div>
+</form>
+END;
+// end of container that has visibility toggled
+echo '</div>';
+
+// EOF

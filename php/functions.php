@@ -1,55 +1,9 @@
 <?php
 // Filename: php/functions.php
-// Purpose: Some miscellaneous functions
+// Purpose: Some miscellaneous public functions
 
 namespace frakturmedia\RizeMeet;
 
-use Eluceo\iCal\Domain\Entity\Event;
-use Eluceo\iCal\Domain\ValueObject\UniqueIdentifier;
-
-use Eluceo\iCal\Domain\ValueObject\Timestamp;
-use Eluceo\iCal\Domain\ValueObject\TimeSpan;
-use Eluceo\iCal\Domain\ValueObject\DateTime;
-use Eluceo\iCal\Domain\ValueObject\Uri;
-
-use Eluceo\iCal\Domain\ValueObject\Location;
-use Eluceo\iCal\Domain\ValueObject\GeographicPosition;
-
-use Eluceo\iCal\Domain\ValueObject\Organizer;
-use Eluceo\iCal\Domain\ValueObject\EmailAddress;
-
-use Eluceo\iCal\Domain\Entity\Calendar;
-use Eluceo\iCal\Presentation\Factory\CalendarFactory;
-
-function createIcalContent ($start, $end, $name, $description, $location, $dest_email ) {
-
-    // create the event with a unique identifier
-    $event = (new Event( new UniqueIdentifier($_SERVER['SERVER_NAME'])))
-        ->touch(new Timestamp())
-        ->setSummary($name)
-        ->setDescription($description)
-        ->setOccurrence(
-            new TimeSpan(
-                new DateTime(\DateTimeImmutable::createFromFormat('Y-m-d H:i', $start), false),
-                new DateTime(\DateTimeImmutable::createFromFormat('Y-m-d H:i', $end), false)
-            )
-        )
-        ->setUrl( new Uri('https://' . $_SERVER['SERVER_NAME']))
-        ->setLocation( 
-            (new Location($location))
-                ->withGeographicPosition(new GeographicPosition(49.504558,5.9464613))
-        )
-        ->setOrganizer(
-            new Organizer(
-                new EmailAddress(EMAIL_REPLYTO),
-                'PORG'
-            )
-        );
-
-    $calendar = new Calendar([$event]);
-    $ical_content = (new CalendarFactory())->createCalendar($calendar);
-    return (string) $ical_content;
-}
 
 function loadEventDetails() {
     if (file_exists(EVENT_DETAILS_FILE)) {
@@ -63,26 +17,6 @@ function loadEventDetails() {
         "rizemeet_meeting_topic" => "",
         "rizemeet_regular" => "second Monday of this month"
     ];
-}
-
-// https://stackoverflow.com/questions/4356289/php-random-string-generator
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[random_int(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-
-function hashPassword($pw)
-{
-    return password_hash(
-        $pw,
-        PASSWORD_DEFAULT,
-        ['cost' => PASSWORD_HASH_COST]
-    );
 }
 
 function determineNextEvent($conf)
@@ -155,47 +89,6 @@ function determineNextEvent($conf)
         "start_dt" => $event_date->format('Y-m-d') . ' ' . $stime,
         "end_dt" => $event_date->format('Y-m-d') . ' ' . $etime,
     );
-}
-
-function saveEventDetails($conf)
-{
-    echo '<div id="regular_event_results" class="col-12">';
-    if (file_put_contents(EVENT_DETAILS_FILE, json_encode($conf))) {
-        alertSuccess('Update successful', false);
-    } else {
-        alertDanger('Update failed', false);
-    }
-    echo '</div>';
-}
-
-function alertMessage($msg, $type, $container)
-{
-    if ($container) {
-        echo '<div class="container mt-3"><div class="row">';
-    }
-    echo '<div class="col"><div class="alert alert-' . $type . '" role="alert">' . $msg. '</div></div>';
-    if ($container) {
-        echo '</div></div>';
-    }
-}
-
-function alertDanger($msg, $container=true)
-{ alertMessage($msg, 'danger', $container); }
-
-function alertWarning($msg, $container=true)
-{ alertMessage($msg, 'warning', $container); }
-
-function alertSuccess($msg, $container=true)
-{ alertMessage($msg, 'success', $container); }
-
-function alertPrimary($msg, $container=true)
-{ alertMessage($msg, 'primary', $container); }
-
-function checkDatetimeValidity($rdt)
-{
-    // make sure it's a valid date
-    $dt = \DateTime::createFromFormat("Y-m-d", $rdt);
-    return $dt !== false && $dt::getLastErrors() === false;
 }
 
 // EOF

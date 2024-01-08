@@ -9,7 +9,7 @@ echo <<< END
  <div class="row">
   <div class="col-12">
    <h1>
-    Manage images 
+    Images 
     <img id="icon_manage_images" class="intico" src="/imgs/icons/rise.svg">
    </h1>
   </div>

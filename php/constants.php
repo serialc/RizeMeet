@@ -20,6 +20,7 @@ define("CONF_TEMPLATE", "../php/template_config.php");
 define("SITE_TOML", "../site/site.toml");
 define("SITE_TOML_TEMPLATE", "../php/template_site.toml");
 define("EVENT_ROOM_TEMPLATE", "../php/template_location.json");
+define("BACKUP_DIR", "../backups/");
 
 // logging
 define("LOGSDIR", "../logs/");

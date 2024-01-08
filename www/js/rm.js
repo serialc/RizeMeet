@@ -60,6 +60,13 @@ RM.init = function()
         });
     }
 
+    el = document.getElementById('manage_backup_content');
+    if (el) {
+        el.style.display = "none";
+        document.getElementById('icon_manage_backup').addEventListener('click', function(){
+            RM.toggle('manage_backup_content');
+        });
+    }
 
     // show the hash location panel
     let hash = window.location.hash.slice(1);

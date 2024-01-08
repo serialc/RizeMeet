@@ -9,7 +9,7 @@ if (!file_exists(EVENT_ROOMS_FOLDER)) { mkdir(EVENT_ROOMS_FOLDER); }
 
 // heading for session management
 echo '<div id="manage_locations" class="container mb-2"><div class="row"><div class="col">' .
-     '<h1>Manage meeting rooms or locations <img id="icon_manage_locations" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+     '<h1>Meeting Locations <img id="icon_manage_locations" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
 
 echo '<div id="manage_locations_content">';
 
@@ -28,7 +28,7 @@ if (isset($_POST['rizemeet_new_location'])) {
             copy(EVENT_ROOM_TEMPLATE, EVENT_ROOMS_FOLDER . $fn);
         }
     } else {
-        alertDanger("File name '" . $fn . "' is not valid");
+        alertDanger("File name '" . $alphanum . "' is not valid as it contains other characters than <b>letters and numbers</b>");
     }
 }
 

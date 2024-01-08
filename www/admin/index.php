@@ -9,6 +9,19 @@ chdir('..');
 
 require_once('../php/initialization.php');
 // $site specifies the site details based on site.toml
+require_once('../php/admin/admin_functions.php');
+
+if (isset($_GET['download'])) {
+
+    // we don't read any passed file name - just get the one generated today
+    $zfn = $site['brand'] . '_' . date('Y-m-d') . '.zip';
+
+    // do download and not site loading
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="' . $zfn. '"');
+    readfile(BACKUP_DIR . $zfn);
+    return;
+}
 
 $conf = loadEventDetails();
 
