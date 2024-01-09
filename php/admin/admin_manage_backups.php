@@ -67,13 +67,10 @@ if (isset($_FILES['uploaded_backup_file'])) {
                 // Copy images from SITE_IMAGES_FOLDER to WWW_SITE_IMAGES_FOLDER
                 $rscs = array_diff(scandir(SITE_IMAGES_FOLDER), array('.', '..'));
 
-                // only specified file types are allowed to be copied to WWW_SITE_IMAGES_FOLDER
-                $allowed_ft = array("png", "gif", "svg", "jpg");
-
                 foreach ($rscs as $rsc) {
                     $fext = pathinfo($rsc, PATHINFO_EXTENSION);
-                    if (!in_array($fext, $allowed_ft)) {
-                        alertWarning("The file <b>$rsc</b> is not valid. Only the following types are allowed: <b>" . implode(', ', $allowed_ft) . "</b>");
+                    if (!in_array($fext, ALLOWED_UPLOAD_FILE_TYPES)) {
+                        alertWarning("The file <b>$rsc</b> is not valid. Only the following types are allowed: <b>" . implode(', ', ALLOWED_UPLOAD_FILE_TYPES) . "</b>");
                         unlink(SITE_IMAGES_FOLDER . $rsc);
                     } else {
                         copy(SITE_IMAGES_FOLDER . $rsc, WWW_SITE_IMAGES_FOLDER . $rsc);

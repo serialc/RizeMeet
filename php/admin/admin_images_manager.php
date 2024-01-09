@@ -42,12 +42,10 @@ if (isset($_FILES["uploaded_file"])) {
     $filepath = $fup['tmp_name'];
     $filesize = filesize($filepath);
 
-    $allowed_ft = array("png", "gif", "svg", "jpg");
-
     // Errors
     // Is it a valid file type
-    if (!in_array($fext, $allowed_ft)) {
-        alertDanger("File type is not valid. Only the following types are allowed: <b>" . implode(', ', $allowed_ft) . "</b>");
+    if (!in_array($fext, ALLOWED_UPLOAD_FILE_TYPES)) {
+        alertDanger("File type is not valid. Only the following types are allowed: <b>" . implode(', ', ALLOWED_UPLOAD_FILE_TYPES) . "</b>");
         $file_errors = true;
     }
 

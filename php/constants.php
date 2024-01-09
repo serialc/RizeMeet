@@ -26,6 +26,7 @@ define("BACKUP_DIR", "../backups/");
 define("LOGSDIR", "../logs/");
 
 // other
+define("ALLOWED_UPLOAD_FILE_TYPES", array("png", "gif", "svg", "jpg", "zip"));
 define("PASSWORD_HASH_COST", 10);
 define("TIMEZONE", 'CET');
 define("WWW_SITE_IMAGES_FOLDER", "imgs/site/");
