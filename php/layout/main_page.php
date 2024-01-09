@@ -26,7 +26,13 @@ echo $next_event['pretty_date'] . '<br>' . $next_event['stime'] . ' - ' . $next_
 
 <?php
 // show the location based on $conf
-if ( isset($conf['rizemeet_location']) and file_exists(EVENT_ROOMS_FOLDER . $conf['rizemeet_location'])) {
+// - rizemeet_location key must exists in $conf
+// - rizemeet_location must not be empty
+// - location file must exist
+if ( isset($conf['rizemeet_location']) and
+        strcmp($conf['rizemeet_location'], '') !== 0 and
+        file_exists(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']) ) {
+
     $room = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
     echo $parsedown->text($room['description']);
 } else {

@@ -62,10 +62,23 @@ if (isset($_FILES['uploaded_backup_file'])) {
             $zip->extractTo(SITE_PATH);
             $zip->close();
 
-            // Copy images from SITE_IMAGES_FOLDER to WWW_SITE_IMAGES_FOLDER
-            $rscs = array_diff(scandir(SITE_IMAGES_FOLDER), array('.', '..'));
-            foreach ($rscs as $rsc) {
-                copy(SITE_IMAGES_FOLDER . $rsc, WWW_SITE_IMAGES_FOLDER . $rsc);
+            // if there's an images folder
+            if (file_exists(SITE_IMAGES_FOLDER)) {
+                // Copy images from SITE_IMAGES_FOLDER to WWW_SITE_IMAGES_FOLDER
+                $rscs = array_diff(scandir(SITE_IMAGES_FOLDER), array('.', '..'));
+
+                // only specified file types are allowed to be copied to WWW_SITE_IMAGES_FOLDER
+                $allowed_ft = array("png", "gif", "svg", "jpg");
+
+                foreach ($rscs as $rsc) {
+                    $fext = pathinfo($rsc, PATHINFO_EXTENSION);
+                    if (!in_array($fext, $allowed_ft)) {
+                        alertWarning("The file <b>$rsc</b> is not valid. Only the following types are allowed: <b>" . implode(', ', $allowed_ft) . "</b>");
+                        unlink(SITE_IMAGES_FOLDER . $rsc);
+                    } else {
+                        copy(SITE_IMAGES_FOLDER . $rsc, WWW_SITE_IMAGES_FOLDER . $rsc);
+                    }
+                }
             }
 
             // success message
