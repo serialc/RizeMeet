@@ -54,8 +54,21 @@ if (isset($_FILES['uploaded_backup_file'])) {
     if (!$file_errors) {
         $zip = new ZipArchive;
         if ($zip->open($filepath) === TRUE) {
+
+            // reset the site - delete contents of SITE_PATH and WWW_SITE_IMAGES_FOLDER
+            clearSite();
+
+            // extract the zip files to the SITE_PATH
             $zip->extractTo(SITE_PATH);
             $zip->close();
+
+            // Copy images from SITE_IMAGES_FOLDER to WWW_SITE_IMAGES_FOLDER
+            $rscs = array_diff(scandir(SITE_IMAGES_FOLDER), array('.', '..'));
+            foreach ($rscs as $rsc) {
+                copy(SITE_IMAGES_FOLDER . $rsc, WWW_SITE_IMAGES_FOLDER . $rsc);
+            }
+
+            // success message
             alertSuccess("File uploaded and extracted successfully. <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/admin\">Refresh to see changes</a>");
         } else {
             alertDanger("Failed to extract the uploaded file");

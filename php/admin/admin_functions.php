@@ -185,5 +185,28 @@ function parseFileUploadForErrors($fup)
 }
 
 
+// https://stackoverflow.com/questions/4594180/
+function deleteFolderContents($fp, $keep_dir=FALSE)
+{
+    if (file_exists($fp)) {
+        $di = new RecursiveDirectoryIterator($fp, FilesystemIterator::SKIP_DOTS);
+        $ri = new RecursiveIteratorIterator($di, RecursiveIteratorIterator::CHILD_FIRST);
+        foreach ($ri as $file) {
+            if ($keep_dir) {
+                $file->is_file() ? unlink($file) : '' ;
+            } else {
+                $file->isDir() ? rmdir($file) : unlink($file);
+            }
+        }
+    }
+}
+
+// Reset site - delete all the content
+function clearSite()
+{
+    // delete pre-existing site contents and www/site
+    deleteFolderContents(SITE_PATH);
+    deleteFolderContents(WWW_SITE_IMAGES_FOLDER);
+}
 
 // EOF

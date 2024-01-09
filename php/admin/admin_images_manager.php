@@ -38,10 +38,19 @@ if (isset($_FILES["uploaded_file"])) {
 
     // clean up the filename (remove spaces)
     $filename = str_replace(' ', '_', $fup['name']);
+    $fext = pathinfo($filename, PATHINFO_EXTENSION);
     $filepath = $fup['tmp_name'];
     $filesize = filesize($filepath);
 
-    // errors
+    $allowed_ft = array("png", "gif", "svg", "jpg");
+
+    // Errors
+    // Is it a valid file type
+    if (!in_array($fext, $allowed_ft)) {
+        alertDanger("File type is not valid. Only the following types are allowed: <b>" . implode(', ', $allowed_ft) . "</b>");
+        $file_errors = true;
+    }
+
     // was a file actually uploaded
     if ( $filesize === 0 ) {
         alertDanger("No file selected to upload");
@@ -56,6 +65,7 @@ if (isset($_FILES["uploaded_file"])) {
     if (!$file_errors) {
         if( move_uploaded_file($filepath, SITE_IMAGES_FOLDER . $filename) ) {
             alertSuccess("File uploaded successfully");
+
             // copy the file to the www/live directory
             copy(SITE_IMAGES_FOLDER . $filename, WWW_SITE_IMAGES_FOLDER . $filename);
         } else {

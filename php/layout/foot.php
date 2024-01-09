@@ -1,8 +1,8 @@
-<div class="container footer">
-    <footer class="pt-4 mt-5 text-body-secondary border-top">
-        <div class="row">
-
-            <div class="col-md-4 mt-3">
+<div class="container-fluid footer bg-dark-subtle">
+    <div class="container">
+        <footer class="pt-4 mt-5 text-body-secondary">
+            <div class="row">
+                <div class="col-md-4 mt-3">
 <?php
 if (file_exists(SITE_PATH . 'foot_left.md')) {
     echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_left.md'));
@@ -10,9 +10,9 @@ if (file_exists(SITE_PATH . 'foot_left.md')) {
     echo '<p>Customize ' . SITE_PATH . 'foot_left.md</p>';
 }
 ?>
-            </div>
+                </div>
 
-            <div class="col-md-4 mt-3">
+                <div class="col-md-4 mt-3">
 <?php
 if (file_exists(SITE_PATH . 'foot_middle.md')) {
     echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_middle.md'));
@@ -20,9 +20,9 @@ if (file_exists(SITE_PATH . 'foot_middle.md')) {
     echo '<p>Customize ' . SITE_PATH . 'foot_middle.md</p>';
 }
 ?>
-            </div>
+                </div>
 
-            <div class="col-md-4 mt-3">
+                <div class="col-md-4 mt-3">
 <?php
 if (file_exists(SITE_PATH . 'foot_right.md')) {
     echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_right.md'));
@@ -30,15 +30,13 @@ if (file_exists(SITE_PATH . 'foot_right.md')) {
     echo '<p>Customize ' . SITE_PATH . 'foot_right.md</p>';
 }
 ?>
-            </div>
+                </div>
 
-            <div class="col-12 mt-5 text-center" style="font-size: 0.7em">
-                <p>
-                    <a href="/unsubscribe/form">Mailing list unsubscribe</a>
-                <p>
-                <p>
-                    <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> facilitates meeting management and coordination.<br>
-                    Copyright &copy;
+                <div class="col-12 mt-5 text-center" style="font-size: 0.7em">
+                    <p> <a href="/unsubscribe/form">mailing list unsubscribe</a> <p>
+
+                    <p> <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> facilitates meeting management and coordination.<br>
+                        Copyright &copy;
 
 <?php
 
@@ -48,12 +46,13 @@ echo $today->format('Y');
 ?>
 
  RizeMeet - <a href='LICENSE'>GNU General Public License</a>
-                </p>
+                    </p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
+    <div class="text-end p-4" style="font-size: 0.7em"><a class="text-decoration-none" href="/admin" style="color: #888">&pi;</a></div>
 </div>
-<p class="text-end m-4" style="font-size: 0.7em"><a class="text-decoration-none" href="/admin" style="color: #888">&pi;</a></p>
 <script src="/js/rm.js"></script>
 </body>
 </html>
