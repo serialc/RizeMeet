@@ -33,14 +33,23 @@ if (file_exists(SITE_PATH . 'foot_right.md')) {
                 </div>
 
                 <div class="col-12 mt-5 text-center" style="font-size: 0.7em">
-                    <p> <a href="/unsubscribe/form">mailing list unsubscribe</a> <p>
+                    <p> <a href="/unsubscribe/form">Mailing list unsubscribe</a> <p>
+
+                    <p> Content is Copyright &copy; 
+<?php
+
+$today = new \DateTime(date('Y-m-d'));
+echo $today->format('Y');
+echo ' ' . $site['brand'];
+
+?>
+                    </p>
 
                     <p> <a href="https://github.com/serialc/RizeMeet">RizeMeet</a> facilitates meeting management and coordination.<br>
                         Copyright &copy;
 
 <?php
 
-$today = new \DateTime(date('Y-m-d'));
 echo $today->format('Y');
 
 ?>

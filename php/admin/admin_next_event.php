@@ -40,22 +40,23 @@ if (isset($_POST['rizemeet_date']) or isset($_POST['rizemeet_location'])) {
 // show the date form
 alertPrimary('Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime']);
 
-echo '<div class="col-12"><h2>Date override</h2></div>';
+echo <<< END
+<div class="col-12"><h2>Date override</h2></div>
+<div class="col-lg-6">
+ <p>You can override the date of the next event by selecting a future date here.</p>
+ <p>Specify a regular meeting time or use the default.</p>
+</div>
 
-echo '<div class="col-lg-6">' .
-    '<p>You can override the date of the next event by selecting a future date here.</p>' .
-    '<p>Specify a regular meeting time or use the default.</p>' .
-    '</div>';
+<div class="col-md-3 d-lg-none"></div>
+<div class="col-lg-6 col-md-9">
+ <div class="input-group">
+  <label for="rizemeet_date" class="input-group-text meet_label">Select date</label>
+END;
 
-echo '<div class="col-md-3 d-lg-none"></div>';
-
-echo '<div class="col-lg-6 col-md-9">'.
-     '<div class="input-group">' .
-     '<label for="rizemeet_date" class="input-group-text meet_label">Select date</label>' .
-     '<input type="date" class="form-control" id="rizemeet_date" name="rizemeet_date" value="' . $conf['rizemeet_date'] . '">' .
+echo '<input type="date" class="form-control" id="rizemeet_date" name="rizemeet_date" value="' . $conf['rizemeet_date'] . '">' .
+     '</div>' . 
+     '<div class="form-text mb-2">If blank, the regular event schedule is used</div>' .
      '</div>';
- echo '<div class="form-text mb-2">If blank, the regular event schedule is used</div>';
- echo '</div>';
 
 // show the location form
 echo '<div class="col-12"><h2>Location</h2></div>';
