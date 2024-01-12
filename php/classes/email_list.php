@@ -1,40 +1,68 @@
 <?php
 // Filename: php/classes/maillist.php
 // Purpose: Handles load and manipulations of mailing list
+// This can either create/modify a file or connect to a database depending
+// on the site/config.php variable DATA_BACKEND_DB_OR_FILE
 
 namespace frakturmedia\RizeMeet;
+
+use PDO;
 
 class MailingList {
 
     private $list;
     private $raw;
     private $sfc;
+    private $conn;
 
     function __construct( )
     {
-        // check if it exists, create it if not
-        if (!file_exists(MAILING_LIST_MEMBERS_FILENAME)) {
-            touch(MAILING_LIST_MEMBERS_FILENAME);
-        }
-
-        // retrieve the data and trim any unexpected spaces or commas
-        $this->raw = trim(file_get_contents(MAILING_LIST_MEMBERS_FILENAME), ', ');
-
-        // remove any new lines if we find some
-        $this->raw = str_replace(array("\n","\r\n","\r"), '', $this->raw);
-
-        // if retrieved correctly
-        if ($this->raw !== false) {
-            // if empty, create empty array
-            if ( strcmp($this->raw, '') === 0) {
-                $this->list= [];
-            } else {
-                // transform from csv to list and remove any trailing spaces, commas
-                $this->list = explode(',', $this->raw);
+        switch (DATA_BACKEND_DB_OR_FILE) {
+        case "db":
+            // create connection, MySQL setup
+            try {
+                $this->conn = new PDO(
+                    'mysql:host=' . DB_SERVER . ';dbname=' . DB_NAME . ';charset=utf8',
+                    DB_USER_RWD,
+                    DB_PASS,
+                    [PDO::MYSQL_ATTR_INIT_COMMAND =>"SET NAMES utf8;SET time_zone = '" . TIMEZONE . "'"]
+                );
+            } catch (PDOException $e) {
+                // Database connection failed
+                echo "Database connection failed" and die;
             }
-        } else {
-            echo "Failed to open the mailing list file.";
-            return false;
+
+            break;
+
+        // default is file mode
+        case "file":
+        default:
+            // check if it exists, create it if not
+            if (!file_exists(MAILING_LIST_MEMBERS_FILENAME)) {
+                touch(MAILING_LIST_MEMBERS_FILENAME);
+            }
+
+            // retrieve the data and trim any unexpected spaces or commas
+            $this->raw = trim(file_get_contents(MAILING_LIST_MEMBERS_FILENAME), ', ');
+
+            // remove any new lines if we find some
+            $this->raw = str_replace(array("\n","\r\n","\r"), '', $this->raw);
+
+            // if retrieved correctly
+            if ($this->raw !== false) {
+                // if empty, create empty array
+                if ( strcmp($this->raw, '') === 0) {
+                    $this->list= [];
+                } else {
+                    // transform from csv to list and remove any trailing spaces, commas
+                    $this->list = explode(',', $this->raw);
+                }
+            } else {
+                echo "Failed to open the mailing list file.";
+                return false;
+            }
+
+            break;
         }
 
         // salt file, used to encyrpt email, check it exists and populate if not
@@ -43,6 +71,7 @@ class MailingList {
         } else {
             // no salt file exists, create one - generate a salt file code
             $this->sfc = generateRandomString(20);
+
             // save it
             file_put_contents(ADMIN_SALT_FILE, $this->sfc);
         }
@@ -61,45 +90,120 @@ class MailingList {
 
     public function count ()
     {
-        return count($this->list);
+        switch (DATA_BACKEND_DB_OR_FILE) {
+        case "db":
+            $sql = "SELECT COUNT(*) AS count FROM " . TABLE_MAILINGLIST;
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([]);
+            return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+            break;
+
+        // default is file mode
+        case "file":
+        default:
+            return count($this->list);
+        }
     }
 
     private function save ()
     {
-        if (!file_exists(MAILING_ARCHIVE_FOLDER)) {
-            mkdir(MAILING_ARCHIVE_FOLDER);
+        switch (DATA_BACKEND_DB_OR_FILE) {
+        case "db":
+            // do nothing no need to 'save'
+            break;
+
+        // default is file mode
+        case "file":
+        default:
+            if (!file_exists(MAILING_ARCHIVE_FOLDER)) {
+                mkdir(MAILING_ARCHIVE_FOLDER);
+            }
+
+            # backup list
+            file_put_contents(MAILING_ARCHIVE_FOLDER . 'ML_' . date('Y-m-d_H-i-s') . '.csv', $this->raw);
+
+            # overwrite 
+            file_put_contents(MAILING_LIST_MEMBERS_FILENAME, implode(',', $this->list));
         }
-
-        # backup list
-        file_put_contents(MAILING_ARCHIVE_FOLDER . 'ML_' . date('Y-m-d_H-i-s') . '.csv', $this->raw);
-
-        # overwrite 
-        file_put_contents(MAILING_LIST_MEMBERS_FILENAME, implode(',', $this->list));
     }
 
     public function remove ($email)
     {
-        $index = array_search($email, $this->list);
-        unset($this->list[$index]);
-        $this->save();
+        switch (DATA_BACKEND_DB_OR_FILE) {
+        case "db":
+            $sql = "DELETE FROM " . TABLE_MAILINGLIST . " WHERE email=?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$email]);
+            break;
+
+        // default is file mode
+        case "file":
+        default:
+            $index = array_search($email, $this->list);
+            unset($this->list[$index]);
+            $this->save();
+        }
     }
 
     public function add ($email)
     {
-        array_push($this->list, $email);
-        $this->save();
+        switch (DATA_BACKEND_DB_OR_FILE) {
+        case "db":
+            $sql = "INSERT INTO " . TABLE_MAILINGLIST . "(email) VALUES (?)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$email]);
+            break;
+
+        // default is file mode
+        case "file":
+        default:
+            array_push($this->list, $email);
+            $this->save();
+        }
     }
 
     public function exists ($email)
     {
-        if ( in_array($email, $this->list) ) {
-            return true;
+        switch (DATA_BACKEND_DB_OR_FILE) {
+        case "db":
+            $sql = "SELECT email FROM " . TABLE_MAILINGLIST . " WHERE email=?";
+            $stmt = $this->conn->prepare($sql);
+            $result = $stmt->execute([$email]);
+            if ($result && $stmt->rowCount() === 1) {
+                return true;
+            }
+            break;
+
+        // default is file mode
+        case "file":
+        default:
+            if ( in_array($email, $this->list) ) {
+                return true;
+            }
         }
+
         return false;
     }
 
-    public function get ()
+    public function getList ()
     {
-        return $this->list;
+        switch (DATA_BACKEND_DB_OR_FILE) {
+        case "db":
+            $sql = "SELECT email FROM " . TABLE_MAILINGLIST . "";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            $emails = [];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                array_push($emails, $row);
+            }
+            return $emails;
+            break;
+
+        // default is file mode
+        case "file":
+        default:
+            return $this->list;
+        }
     }
 }

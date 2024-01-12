@@ -9,4 +9,5 @@ composer.phar
 *.swp
 backups/
 www/css/custom.css
+salt_file.txt
 

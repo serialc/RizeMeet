@@ -18,7 +18,13 @@ define('SERVER_IS_PRODUCTION', FALSE);
 
 // Indicate if mailing list and sessions are stored in files or DB
 define('DATA_BACKEND_DB_OR_FILE', 'file');
+// create the tables using the templates/create_tables.sql
 //define('DATA_BACKEND_DB_OR_FILE', 'db');
+
+// Table name in DB
+// You will want to change this if you have multiple RizeMeet instances in a DB
+// If you change this table name, also change the templates/create_tables.sql contents
+define("TABLE_MAILINGLIST", "rizemeet_mailing_list");
 
 // DefineDB connection parameters
 define('DB_SERVER', 'localhost');

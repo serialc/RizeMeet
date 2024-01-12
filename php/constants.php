@@ -14,28 +14,24 @@ define("SESSIONS_DIR",                  SITE_PATH . "sessions/");
 define("CONF_FILE",                     SITE_PATH . "config.php");
 define("SITE_IMAGES_FOLDER",            SITE_PATH . "images/");
 define("SITE_CUSTOM_CSS",               SITE_PATH . "custom.css");
+define("SITE_TOML",                     SITE_PATH . "site.toml");
 
-// config file
-define("ADMIN_SALT_FILE", "../php/admin/salt_file.txt");
-define("CONF_TEMPLATE", "../php/template_config.php");
-define("SITE_TOML", "../site/site.toml");
-define("SITE_TOML_TEMPLATE", "../php/template_site.toml");
-define("EVENT_ROOM_TEMPLATE", "../php/template_location.json");
-define("BACKUP_DIR", "../backups/");
-define("CUSTOM_CSS_TEMPLATE", "../php/custom.css");
+// templates
+define("CONF_TEMPLATE", "../templates/template_config.php");
+define("SITE_TOML_TEMPLATE", "../templates/template_site.toml");
+define("EVENT_ROOM_TEMPLATE", "../templates/template_location.json");
+define("CUSTOM_CSS_TEMPLATE", "../templates/custom.css");
 
 // logging
 define("LOGSDIR", "../logs/");
 
 // other
+define("ADMIN_SALT_FILE", "admin/salt_file.txt");
 define("ALLOWED_UPLOAD_FILE_TYPES", array("png", "gif", "svg", "jpg", "zip"));
 define("PASSWORD_HASH_COST", 10);
 define("TIMEZONE", 'CET');
 define("WWW_SITE_IMAGES_FOLDER", "imgs/site/");
 define("WWW_SITE_CUSTOM_CSS",    "css/custom.css");
-
-// tables if data is using DB
-define("TABLE_MAILINGLIST", "mailing_list");
-define("TABLE_SESSIONS", "sessions");
+define("BACKUP_DIR", "../backups/");
 
 // EOF
