@@ -40,7 +40,7 @@ if ( isset($conf['rizemeet_location']) and
 }
 ?>
 
-                <h3 class="mt-5">Next meeting topic</h3>
+                <h2 class="mt-5">Next meeting topic</h2>
                 <div>
 
 <?php

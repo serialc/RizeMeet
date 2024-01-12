@@ -7,8 +7,25 @@
 
             <h3>Requirements</h3>
             <p>RizeMeet uses <code>PHP</code> and the rewrite module. You should confirm it's installed.</p>
+            <p>You must provide a <code>www/.htaccess</code> file to enable rewrite. For my server the following .htaccess contents are used:<br>
+<pre>
+&lt;IfModule mod_rewrite.c&gt;
+    RewriteEngine On
+    RewriteBase /
+
+# API like urls
+    RewriteRule ^index\.php$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule .* index.php [L]
+&lt;/IfModule&gt;
+</pre>
+</p>
             <p>RizeMeet uses multiple PHP packages. To install required packages you will need to use <b>Composer</b> to retrieve the packages.</p>
-            <p>If you have Composer (if not, download it - google it) you can simply navigate to the RizeMeet directory in terminal run <code>composer update</code>.</p>
+            <p>If you have Composer (if not, download it - google it) you can simply navigate to the RizeMeet directory in terminal run:
+<pre><code>composer update</code></pre>
+or:
+<pre><code>php composer.phar update</code></pre></p>
 
             <h3>In Browser</h3>
             <p>Visit your RizeMeet site in the browser to see the requirements are installed correctly. The RizeMeet template site should display.</p>
