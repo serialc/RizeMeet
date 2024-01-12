@@ -49,14 +49,6 @@ function createIcalContent ($start, $end, $name, $description, $location, $dest_
     return (string) $ical_content;
 }
 
-function hashPassword($pw)
-{
-    return password_hash(
-        $pw,
-        PASSWORD_DEFAULT,
-        ['cost' => PASSWORD_HASH_COST]
-    );
-}
 
 function saveEventDetails($conf)
 {

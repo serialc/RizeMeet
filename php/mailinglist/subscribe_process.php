@@ -73,7 +73,6 @@ if (isset($_POST['reg_email']) and filter_var($_POST['reg_email'], FILTER_VALIDA
         echo '<h1>Error</h1>';
         echo '<p>We failed to send you an email to confirm your registration.</p>';
         echo '<p>This may be our fault. If you think so too, let us know.</p>';
-        return;
     } else {
         echo '<h1>Email confirmation sent</h1>';
         echo '<p>An email is being sent to you to confirm your registration.</p>';

@@ -19,6 +19,7 @@ $parsedown = new \Parsedown();
 
 include '../php/layout/head.php';
 
+echo '<div id="content">';
 switch ($page) {
 case 'documentation':
     include '../php/layout/documentation.php';
@@ -47,6 +48,7 @@ case 'sessions':
 default:
     include '../php/main.php';
 }
+echo '</div>';
 
 include '../php/layout/foot.php';
 

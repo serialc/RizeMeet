@@ -4,6 +4,14 @@
 
 namespace frakturmedia\RizeMeet;
 
+function hashPassword($pw)
+{
+    return password_hash(
+        $pw,
+        PASSWORD_DEFAULT,
+        ['cost' => PASSWORD_HASH_COST]
+    );
+}
 
 function loadEventDetails() {
     if (file_exists(EVENT_DETAILS_FILE)) {

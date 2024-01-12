@@ -9,6 +9,16 @@
     --col-bq-regular: #70ad47;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    flex: 1;
+}
+
 #main_content {
     min-height: 50vh;
 }

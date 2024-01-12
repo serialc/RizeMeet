@@ -28,9 +28,8 @@ define("TABLE_MAILINGLIST", "rizemeet_mailing_list");
 
 // DefineDB connection parameters
 define('DB_SERVER', 'localhost');
-define('DB_USER_RWD', 'db_username_rwd');
-define('DB_USER_READ', 'db_username_read');
-define('DB_NAME', 'username');
+define('DB_NAME', 'db_name');
+define('DB_USER', 'username');
 define('DB_PASS', 'password');
 
 // EOF

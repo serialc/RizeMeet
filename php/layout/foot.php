@@ -1,8 +1,8 @@
-<div class="container-fluid footer bg-dark-subtle">
+<div id="footer" class="container-fluid footer bg-dark-subtle text-body-secondary mt-5">
     <div class="container">
-        <footer class="pt-4 mt-5 text-body-secondary">
+        <footer class="pt-4">
             <div class="row">
-                <div class="col-md-4 mt-3">
+                <div id="footer_left" class="col-md-4 mt-3">
 <?php
 if (file_exists(SITE_PATH . 'foot_left.md')) {
     echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_left.md'));
@@ -12,7 +12,7 @@ if (file_exists(SITE_PATH . 'foot_left.md')) {
 ?>
                 </div>
 
-                <div class="col-md-4 mt-3">
+                <div id="footer_middle" class="col-md-4 mt-3 text-center">
 <?php
 if (file_exists(SITE_PATH . 'foot_middle.md')) {
     echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_middle.md'));
@@ -22,7 +22,7 @@ if (file_exists(SITE_PATH . 'foot_middle.md')) {
 ?>
                 </div>
 
-                <div class="col-md-4 mt-3">
+                <div id="footer_right" class="col-md-4 mt-3 text-end">
 <?php
 if (file_exists(SITE_PATH . 'foot_right.md')) {
     echo $parsedown->text(file_get_contents(SITE_PATH . 'foot_right.md'));

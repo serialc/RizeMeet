@@ -23,7 +23,7 @@ class MailingList {
             try {
                 $this->conn = new PDO(
                     'mysql:host=' . DB_SERVER . ';dbname=' . DB_NAME . ';charset=utf8',
-                    DB_USER_RWD,
+                    DB_USER,
                     DB_PASS,
                     [PDO::MYSQL_ATTR_INIT_COMMAND =>"SET NAMES utf8;SET time_zone = '" . TIMEZONE . "'"]
                 );
