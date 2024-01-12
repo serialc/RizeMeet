@@ -78,6 +78,11 @@ if (isset($_FILES['uploaded_backup_file'])) {
                 }
             }
 
+            // copy the custom CSS if it exists
+            if (file_exists(SITE_CUSTOM_CSS)) {
+                copy(SITE_CUSTOM_CSS, WWW_SITE_CUSTOM_CSS);
+            }
+
             // success message
             alertSuccess("File uploaded and extracted successfully. <a href=\"http://" . $_SERVER['SERVER_NAME'] . "/admin\">Refresh to see changes</a>");
         } else {

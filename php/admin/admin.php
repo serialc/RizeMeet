@@ -39,6 +39,10 @@ include '../php/admin/admin_location_manager.php';
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 include('../php/admin/admin_manage_sessions.php');
 
+// divider, below is the backup
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+include('../php/admin/admin_manage_styling.php');
+
 // Manage Administrators
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 
