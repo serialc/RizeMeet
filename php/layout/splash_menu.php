@@ -8,7 +8,7 @@
                     </div>
                     <div class="col-lg-9 col-md-12">
                         <img class="float-start me-2 mb-2 rounded-2 d-lg-none" src="<?php echo $site['logo_filename']; ?>" style="width: 30%">
-                        <h1><?php echo $site['brand'];?></h1>
+                        <h1 class="display-5 fw-bold"><?php echo $site['brand'];?></h1>
                         <p class="fs-4"><?php echo $site['full_name']; ?></p>
                     </div>
                 </div>
