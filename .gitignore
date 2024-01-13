@@ -10,4 +10,4 @@ composer.phar
 backups/
 www/css/custom.css
 salt_file.txt
-
+php-error.log

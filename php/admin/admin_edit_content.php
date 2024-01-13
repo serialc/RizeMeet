@@ -4,6 +4,8 @@
 
 namespace frakturmedia\RizeMeet;
 
+use Yosymfony\Toml\Toml;
+
 echo '<div class="container" id="manage_page"><div class="row"><div class="col"><h1>Page Content <img id="icon_manage_page" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
 
 echo '<div id="manage_page_content">';
@@ -19,9 +21,23 @@ $panels = [
 // for each panel check submission
 foreach ( $panels as $ptitle => $pfile ) {
     if (isset($_POST["rmce_" . $pfile])) {
-        // site is different than the others, it's not markdown
+
+        // the TOML site is different than the others, it's not markdown
         if (strcmp($pfile, "site") === 0) {
-            file_put_contents(SITE_PATH . $pfile . ".toml", $_POST["rmce_" . $pfile]);
+
+            // check validity of submitted TOML file
+            try {
+                // try parsing - throws exception if it's invalid
+                Toml::Parse($_POST['rmce_' . $pfile]);
+
+                // save it as it's parsed successfully
+                file_put_contents(SITE_PATH . $pfile . ".toml", $_POST["rmce_" . $pfile]);
+            }
+            catch (\Exception $e) {
+                alertDanger("Site configuration file is invalid - submission rejected");
+                alertWarning("The Site configuration file has reverted to last valid version");
+            }
+
         } else {
             file_put_contents(SITE_PATH . $pfile . ".md", $_POST["rmce_" . $pfile]);
         }
