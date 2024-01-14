@@ -4,7 +4,7 @@
             <div class="container-fluid hero p-5 rounded-3">
                 <div class="row">
                     <div class="col-lg-3 d-none d-lg-block">
-                        <img class="rounded-2" src="<?php echo $site['logo_filename']; ?>" style="width: 100%">
+                        <img class="rounded-2" src="<?php echo $site['logo_filename']; ?>" style="max-width: 100%">
                     </div>
                     <div class="col-lg-9 col-md-12">
                         <img class="float-start me-2 mb-2 rounded-2 d-lg-none" src="<?php echo $site['logo_filename']; ?>" style="width: 30%">
