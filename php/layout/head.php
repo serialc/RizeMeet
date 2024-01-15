@@ -15,7 +15,7 @@
 
     <body>
         <div class="container my-4">
-            <header class="d-flex flex-wrap justify-content-center pb-4 mb-4 border-bottom">
+            <header class="d-flex flex-wrap justify-content-center pb-4 border-bottom">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <span class="me-3">
                         <img src="<?php echo $site['logo_filename']; ?>" class="rounded-3" height="50" style="background:white">
