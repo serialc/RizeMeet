@@ -149,7 +149,7 @@ class MailingList {
     {
         switch (DATA_BACKEND_DB_OR_FILE) {
         case "db":
-            $sql = "INSERT INTO " . TABLE_MAILINGLIST . "(email) VALUES (?)";
+            $sql = "INSERT IGNORE INTO " . TABLE_MAILINGLIST . "(email) VALUES (?)";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$email]);
             break;
@@ -195,7 +195,7 @@ class MailingList {
 
             $emails = [];
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                array_push($emails, $row);
+                array_push($emails, $row['email']);
             }
             return $emails;
             break;

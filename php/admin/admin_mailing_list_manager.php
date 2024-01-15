@@ -31,7 +31,7 @@ if (isset($_POST['rizemeet_email_text'])) {
     $sent_count = 0;
 
     // send the emails
-    foreach( $maillist->get() as $email_address ) {
+    foreach( $maillist->getList() as $email_address ) {
         // create hashed email
         $hashedemail = hashPassword($sfc . $email_address);
         $unsuburl = 'http://' . $_SERVER['SERVER_NAME'] . '/unsubscribe_validation/' . $email_address. '/' . $hashedemail;

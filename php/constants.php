@@ -8,6 +8,7 @@ namespace frakturmedia\RizeMeet;
 define("SITE_PATH",                     "../site/");
 define("EVENT_DETAILS_FILE",            SITE_PATH . "event_details.json");
 define("MAILING_LIST_MEMBERS_FILENAME", SITE_PATH . "mailing_list.csv");
+define("MAILING_LIST_DB_BACKUP",        SITE_PATH . "mailing_list_db_backup.csv");
 define("MAILING_ARCHIVE_FOLDER",        SITE_PATH . "ml_archive/");
 define("EVENT_ROOMS_FOLDER",            SITE_PATH . "rooms/");
 define("SESSIONS_DIR",                  SITE_PATH . "sessions/");

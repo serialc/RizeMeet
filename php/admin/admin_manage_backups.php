@@ -2,6 +2,10 @@
 // Filename: ../php/admin/admin_manage_backups.php
 // Purpose: Creates backups of ../site and also can be used to restore ../site form backup
 
+namespace frakturmedia\RizeMeet;
+
+require_once('../php/classes/email_list.php');
+
 // display form
 echo '<div class="container" id="manage_backup"><div class="row"><div class="col"><h1>Backups <img id="icon_manage_backup" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
 
@@ -22,6 +26,13 @@ if (isset($_POST['create_archive'])) {
     if (!is_writable(BACKUP_DIR)) {
         alertDanger("Permission to write to backup directory is denied");
         return;
+    }
+
+    // check if mailing list is in DB (if in file mode then backup works fine)
+    if (strcmp(DATA_BACKEND_DB_OR_FILE, 'db') === 0) {
+        $mlc = new MailingList();
+        $ml = $mlc->getList();
+        file_put_contents(MAILING_LIST_DB_BACKUP, implode(',', $ml));
     }
 
     $zfn = $site['brand'] . '_' . date('Y-m-d') . '.zip';
@@ -52,7 +63,7 @@ if (isset($_FILES['uploaded_backup_file'])) {
     }
 
     if (!$file_errors) {
-        $zip = new ZipArchive;
+        $zip = new \ZipArchive;
         if ($zip->open($filepath) === TRUE) {
 
             // reset the site - delete contents of SITE_PATH and WWW_SITE_IMAGES_FOLDER
@@ -75,6 +86,15 @@ if (isset($_FILES['uploaded_backup_file'])) {
                     } else {
                         copy(SITE_IMAGES_FOLDER . $rsc, WWW_SITE_IMAGES_FOLDER . $rsc);
                     }
+                }
+            }
+
+            // check if mailing list is in DB (if in file mode then backup works fine)
+            if (strcmp(DATA_BACKEND_DB_OR_FILE, 'db') === 0) {
+                $ml = explode(',', file_get_contents(MAILING_LIST_DB_BACKUP));
+                $mlc = new MailingList();
+                foreach ($ml as $email) {
+                    $mlc->add($email);
                 }
             }
 
