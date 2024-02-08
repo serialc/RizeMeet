@@ -15,10 +15,15 @@ It fits for a specific niche requiring a specific and minimal functionality.
 
 You may find other CMS, such as Hugo, more suitable for anything more full-fledged as a website.
 
-Eventually, there will be the option to determine whether to use a file system for data or DB.
+You can choose to use the filesystem or a DB to store the mailing list.
 
-## Want to help?
+## Want to contribute?
 
-See problems with functionality? Design? Interaction?
+The aim is to provide a simple but functional set of specific features.
 
-Let me know. I want this to be very simple but functional for a specific set of features.
+See problems with functionality? Design? Interaction? Let us know.
+
+## To do
+
+- Check the admin page date update - does it update visually on submit?
+- Use a month-code for each meeting - so sending a new invite will move the meeting rather than creating a second one
