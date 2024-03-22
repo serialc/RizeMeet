@@ -16,6 +16,7 @@ define("CONF_FILE",                     SITE_PATH . "config.php");
 define("SITE_IMAGES_FOLDER",            SITE_PATH . "images/");
 define("SITE_CUSTOM_CSS",               SITE_PATH . "custom.css");
 define("SITE_TOML",                     SITE_PATH . "site.toml");
+define("SITE_LAST_EVENT_ID",            SITE_PATH . "last_event_id.txt");
 
 // templates
 define("CONF_TEMPLATE", "../templates/template_config.php");

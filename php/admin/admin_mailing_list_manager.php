@@ -4,6 +4,8 @@
 
 namespace frakturmedia\RizeMeet;
 
+use Eluceo\iCal\Domain\ValueObject\UniqueIdentifier;
+
 require_once('../php/classes/email_list.php');
 
 // get the list of emailing list
@@ -11,22 +13,50 @@ $maillist = new MailingList();
 
 // open the form
 echo '<div class="container mt-2">
-    <form action="." method="post">
+    <form action=".#contacts_mailing_list" method="post">
         <div class="row">
-            <div class="col-12 mt-2"><h2>Contacts mailing list</h2></div>';
+            <div class="col-12 mt-2"><h2 id="contacts_mailing_list">Contacts mailing list</h2></div>';
 
 
 // process the email text, send it to the mailing list
 if (isset($_POST['rizemeet_email_text'])) {
     echo '<div class="col-12">';
 
-    $send_calendar_invite = false;
-    if ( isset($_POST['send_calendar_invite']) and strcmp('on', $_POST['send_calendar_invite']) === 0 ) {
-        $send_calendar_invite = true;
+    $calendar_invite_type = false;
+    if ( isset($_POST['calendar_invite_type']) ) {
+        $calendar_invite_type = $_POST['calendar_invite_type'];
     }
 
     // get the salf file for deregistration/unsubscription
     $sfc = file_get_contents(ADMIN_SALT_FILE);
+
+    // prep the calendar information if needed
+    // variables created here are used again in the email address loop
+    switch ($calendar_invite_type)
+    {
+    case "new":
+        // Create calendar invite/ICS
+        // generate a unique code for the calendar event
+        $unique_event_identifier_obj = new UniqueIdentifier($site['brand'] . '_' . $next_event['start_dt'] . '_' . uniqid());
+
+        // save it (will convert object to string) - add second line with sequence integer
+        // SEQUENCE starts at 0
+        // unique id of calendar event is on first line, SEQUENCE on the second
+        file_put_contents(SITE_LAST_EVENT_ID, $unique_event_identifier_obj . "\n0");
+        break;
+
+    case "update":
+        // create an invite with the old id, increment to SEQUENCE
+        // unique id of calendar event is on first line, SEQUENCE on the second
+        $ueio_parts = explode("\n", file_get_contents(SITE_LAST_EVENT_ID));
+        $unique_event_identifier_obj = new UniqueIdentifier( $ueio_parts[0] );
+        $sequence_num = $ueio_parts[1] + 1;
+
+        // save updated sequence
+        // unique id of calendar event is on first line, SEQUENCE on the second
+        file_put_contents(SITE_LAST_EVENT_ID, $ueio_parts[0] . "\n" . $sequence_num);
+        break;
+    }
 
     $sent_count = 0;
 
@@ -38,13 +68,28 @@ if (isset($_POST['rizemeet_email_text'])) {
 
         $email = new Mail();
 
-        // if sending of calendar invitation is enabled
-        if ( $send_calendar_invite ) {
-            // Create calendar invite/ICS
-            $ical_content = createIcalContent($next_event['start_dt'], $next_event['end_dt'], $site['brand'] . ' meeting', $conf['rizemeet_meeting_topic'], $next_event['place'], $email_address);
+        // send calendar invitation as selected
+        switch ($calendar_invite_type)
+        {
+        case "none":
+            // do nothing
+            break;
 
-            // attach ical event if requested
+        case "new":
+            // create a new ical invitation for a specific email address
+            $ical_content = createIcalContent($unique_event_identifier_obj, $next_event['start_dt'], $next_event['end_dt'], $site['brand'] . ' meeting', $conf['rizemeet_meeting_topic'], $next_event['place'], $email_address, 0);
+
+            // attach ical event 
             $email->addStringAttachment($ical_content);
+            break;
+
+        case "update":
+            // update ical invitation for a specific email address, with new SEQUENCE value
+            $ical_content = createIcalContent($unique_event_identifier_obj, $next_event['start_dt'], $next_event['end_dt'], $site['brand'] . ' meeting', $conf['rizemeet_meeting_topic'], $next_event['place'], $email_address, $sequence_num);
+
+            // attach ical event 
+            $email->addStringAttachment($ical_content);
+            break;
         }
 
         // select Parsedown from the global namespace
@@ -65,7 +110,7 @@ if (isset($_POST['rizemeet_email_text'])) {
     }
 
     // show count of emails successfully sent
-    alertSuccess('Emails sent: ' . $send_count, false);
+    alertSuccess('Emails sent: ' . $sent_count, false);
 
     // close the col and row
     echo '</div>';
@@ -97,10 +142,20 @@ if ( isset($conf['rizemeet_location']) and strcmp($conf['rizemeet_location'], ""
 
 echo <<< END
                 </textarea>
-                <div class="form-check mt-2">
-                    <input type="checkbox" class="form-check-input" id="send_calendar_invite" name="send_calendar_invite">
-                    <label class="form-check-label" for="send_calendar_invite">Send calendar invitation</label>
+
+                <div class="btn-group pt-2" role="group">
+                    <label class="input-group-text" for="cit_none">Send calendar invitation type</label>
+
+                    <input class="btn-check" type="radio" name="calendar_invite_type" id="cit_none" value="none" checked>
+                    <label class="btn btn-outline-primary" for="cit_none">None</label>
+
+                    <input class="btn-check" type="radio" name="calendar_invite_type" id="cit_new" value="new">
+                    <label class="btn btn-outline-primary" for="cit_new">New</label>
+
+                    <input class="btn-check" type="radio" name="calendar_invite_type" id="cit_update" value="update">
+                    <label class="btn btn-outline-primary" for="cit_update">Update</label>
                 </div>
+
             </div>
 
             <div class="col-12 text-end">

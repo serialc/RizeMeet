@@ -80,6 +80,9 @@ function determineNextEvent($conf)
         $etime = $conf['rizemeet_etime'];
     }
 
+    // Location - get contents
+    $loc_contents = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
+
     // format event date for humans
     // l = day of week name
     // M = month name
@@ -92,7 +95,8 @@ function determineNextEvent($conf)
         "today" => $is_today,
         "stime" => $stime,
         "etime" => $etime,
-        "place" => $conf['rizemeet_location'],
+        "place" => $loc_contents['name'],
+        "place_details" => $loc_contents['description'],
         "start_dt" => $event_date->format('Y-m-d') . ' ' . $stime,
         "end_dt" => $event_date->format('Y-m-d') . ' ' . $etime,
     );

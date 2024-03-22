@@ -2,6 +2,8 @@
 // Filename: php/admin/admin_functions.php
 // Purpose: Some miscellaneous admin functions
 
+namespace frakturmedia\RizeMeet;
+
 use Eluceo\iCal\Domain\Entity\Event;
 use Eluceo\iCal\Domain\ValueObject\UniqueIdentifier;
 
@@ -19,13 +21,14 @@ use Eluceo\iCal\Domain\ValueObject\EmailAddress;
 use Eluceo\iCal\Domain\Entity\Calendar;
 use Eluceo\iCal\Presentation\Factory\CalendarFactory;
 
-function createIcalContent ($start, $end, $name, $description, $location, $dest_email ) {
+function createIcalContent ($euido, $start, $end, $name, $description, $location, $dest_email, $sequence ) {
 
     // create the event with a unique identifier
-    $event = (new Event( new UniqueIdentifier($_SERVER['SERVER_NAME'])))
+    $event = (new Event( $euido ))
         ->touch(new Timestamp())
         ->setSummary($name)
         ->setDescription($description)
+        //->setSequence($sequence)
         ->setOccurrence(
             new TimeSpan(
                 new DateTime(\DateTimeImmutable::createFromFormat('Y-m-d H:i', $start), false),

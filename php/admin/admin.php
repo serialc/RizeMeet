@@ -17,9 +17,13 @@ if (!file_exists('admin/.htpasswd')) {
 
 echo '<div class="container"><div class="row"><div class="col"><h1>Event</h1></div></div></div>';
 
+
 // show the form for the regular meeting time
 include('../php/admin/admin_regular_event.php');
 // this may change the next event date so load the NextEvent() after this
+
+// process submitted form to customize the next event (date, location, topics)
+include('../php/admin/admin_process_event.php');
 
 // repackage and determine the event based on $conf and today's date
 $next_event = determineNextEvent($conf);

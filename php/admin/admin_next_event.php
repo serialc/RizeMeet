@@ -1,6 +1,6 @@
 <?php
 // Filename: php/admin/admin_next_event.php
-// Purpose: display and process the forms to customize the next meeting (location, date, subjects)
+// Purpose: display the forms to customize the next meeting (location, date, subjects)
 
 namespace frakturmedia\RizeMeet;
 
@@ -16,26 +16,6 @@ if ( !file_exists(EVENT_ROOMS_FOLDER) ) {
 }
 
 $rizemeet_locs = array_diff(scandir(EVENT_ROOMS_FOLDER), array('.', '..'));
-
-// update date
-if (isset($_POST['rizemeet_date'])) {
-    $conf['rizemeet_date'] = $_POST['rizemeet_date'];
-}
-
-// update location 
-if (isset($_POST['rizemeet_location'])) {
-    $conf['rizemeet_location'] = $_POST['rizemeet_location'];
-}
-
-// update topic 
-if (isset($_POST['rizemeet_meeting_topic'])) {
-    $conf['rizemeet_meeting_topic'] = $_POST['rizemeet_meeting_topic'];
-}
-
-// save form based on updated $conf
-if (isset($_POST['rizemeet_date']) or isset($_POST['rizemeet_location'])) {
-    saveEventDetails($conf);
-}
 
 // show the date form
 alertPrimary('Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime']);

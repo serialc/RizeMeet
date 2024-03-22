@@ -36,9 +36,10 @@ RM.init = function()
         }
     }
 
-    // show the hash location panel
+    // get the hash value without '#'
     let hash = window.location.hash.slice(1);
-    if (hash !== "") {
+    // show the location panel with the id of the hash value (plus extension '_content' if it exists)
+    if (hash !== "" && document.getElementById(hash + '_content') ) {
         document.getElementById(hash + '_content').style.display = "";
     }
 }();
