@@ -13,7 +13,7 @@ if (isset($_POST['rizemeet_admin_delete'])) {
     if ($duname == "") {
         alertWarning("No username provided");
     } else {
-        $htpasswd = new Htpasswd('admin/.htpasswd');
+        $htpasswd = new Htpasswd(ADMIN_HTPASSWD_FILE);
         if ($htpasswd->userExists($duname)) {
             $htpasswd->deleteUser($duname);
             alertSuccess('User ' . $duname . ' deleted');
@@ -29,7 +29,7 @@ echo '<div class="container"><div class="row">';
 echo '<div class="col-12"><h2>Delete admin</h2></div>';
 echo '<div class="col-lg-6 col-md-12">' .
      '<p>Administrators: ';
-$admins = explode("\n", file_get_contents('admin/.htpasswd'));
+$admins = explode("\n", file_get_contents(ADMIN_HTPASSWD_FILE));
 foreach ($admins as $admin) {
     echo '<b>' . explode(':', $admin)[0] . '</b> ';
 }

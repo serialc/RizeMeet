@@ -4,6 +4,12 @@
 
 namespace frakturmedia\RizeMeet;
 
+// first check that a '.htaccess' file exists otherwise prevent display
+if (!file_exists('.htaccess')) {
+  echo "Create and configure the 'www/admin/.htaccess' file to enable administration.";
+  return;
+}
+
 // move to same directory as main index page to use the same constants
 chdir('..');
 

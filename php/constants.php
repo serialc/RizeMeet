@@ -29,6 +29,7 @@ define("LOGSDIR", "../logs/");
 
 // other
 define("ADMIN_SALT_FILE", "admin/salt_file.txt");
+define("ADMIN_HTPASSWD_FILE", "../.htpasswd");
 define("ALLOWED_UPLOAD_FILE_TYPES", array("png", "gif", "svg", "jpg", "zip"));
 define("PASSWORD_HASH_COST", 10);
 define("TIMEZONE", 'CET');

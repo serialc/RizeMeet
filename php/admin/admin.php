@@ -9,7 +9,7 @@ $parsedown = new \Parsedown();
 
 // check if there's an .htpasswd file 
 // if not, show the form to create it
-if (!file_exists('admin/.htpasswd')) {
+if (!file_exists(ADMIN_HTPASSWD_FILE)) {
     // process .htpasswd username addition
     include('../php/admin/admin_add_user_processing.php');
     include('../php/admin/admin_add_user_form.php');
@@ -59,7 +59,7 @@ include('../php/admin/admin_add_user_processing.php');
 
 echo '<div id="manage_admin_content">';
 // show the admin access controls
-if (file_exists('admin/.htpasswd')) {
+if (file_exists(ADMIN_HTPASSWD_FILE)) {
     include('../php/admin/admin_add_user_form.php');
     include('../php/admin/admin_delete_user.php');
 }

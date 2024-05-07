@@ -16,10 +16,11 @@ if (isset($_POST['rizemeet_admin_username']) and isset($_POST['rizemeet_admin_pw
         alertWarning('Username or password is empty');
     } else {
         // create .htpasswd file if it doesn't exist
-        if(!file_exists('admin/.htpasswd')) {
-            touch('admin/.htpasswd');
+        if(!file_exists(ADMIN_HTPASSWD_FILE)) {
+            touch(ADMIN_HTPASSWD_FILE);
         }
-        $htpasswd = new Htpasswd('admin/.htpasswd');
+
+        $htpasswd = new Htpasswd(ADMIN_HTPASSWD_FILE);
         $htpasswd->addUser($uname, $upass, Htpasswd::ENCTYPE_SHA1);
 
         alertSuccess('User added');
