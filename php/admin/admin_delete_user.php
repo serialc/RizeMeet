@@ -29,10 +29,12 @@ echo '<div class="container"><div class="row">';
 echo '<div class="col-12"><h2>Delete admin</h2></div>';
 echo '<div class="col-lg-6 col-md-12">' .
      '<p>Administrators: ';
-$admins = explode("\n", file_get_contents(ADMIN_HTPASSWD_FILE));
-foreach ($admins as $admin) {
-    echo '<b>' . explode(':', $admin)[0] . '</b> ';
+
+$htpasswd = new Htpasswd(ADMIN_HTPASSWD_FILE);
+foreach ($htpasswd->getUsers() as $admin => $pw) {
+    echo '<b>' . $admin . '</b> ';
 }
+
 echo '</div>';
 
 echo '<div class="col-md-3 d-lg-none"></div>';
