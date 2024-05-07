@@ -84,8 +84,8 @@ function ZipFolder($source, $destination)
         return false;
     }
 
-    $zip = new ZipArchive();
-    if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+    $zip = new \ZipArchive();
+    if (!$zip->open($destination, \ZIPARCHIVE::CREATE)) {
         return false;
     }
 
@@ -93,7 +93,7 @@ function ZipFolder($source, $destination)
 
     if (is_dir($source) === true)
     {
-        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
+        $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source), \RecursiveIteratorIterator::SELF_FIRST);
 
         foreach ($files as $file)
         {
