@@ -4,19 +4,23 @@
 
 namespace frakturmedia\RizeMeet;
 
+use Htpasswd;
+
 // select Parsedown from the global namespace
 $parsedown = new \Parsedown();
 
-// check if there's an .htpasswd file 
+// check if there's at least on administrator in the .htpasswd
 // if not, show the form to create it
-if (!file_exists(ADMIN_HTPASSWD_FILE)) {
+include('../php/admin/admin_add_user_processing.php');
+$htpasswd = new Htpasswd(ADMIN_HTPASSWD_FILE);
+if(count($htpasswd->getUsers()) === 0) {
     // process .htpasswd username addition
-    include('../php/admin/admin_add_user_processing.php');
+    alertDanger("You must add an administrator to secure the site.");
     include('../php/admin/admin_add_user_form.php');
+    return;
 }
 
 echo '<div class="container"><div class="row"><div class="col"><h1>Event</h1></div></div></div>';
-
 
 // show the form for the regular meeting time
 include('../php/admin/admin_regular_event.php');
@@ -57,13 +61,15 @@ echo '<div id="manage_admin" class="container"><div class="row"><div class="col"
 // process .htpasswd username addition
 include('../php/admin/admin_add_user_processing.php');
 
-echo '<div id="manage_admin_content">';
 // show the admin access controls
-if (file_exists(ADMIN_HTPASSWD_FILE)) {
+if (file_exists(ADMIN_HTPASSWD_FILE) and file_exists(ADMIN_HTACCESS_FILE)) {
+    echo '<div id="manage_admin_content">';
     include('../php/admin/admin_add_user_form.php');
     include('../php/admin/admin_delete_user.php');
+    echo '</div>';
+} else {
+    alertDanger("The administration site is not secured! You must configure the .htaccess and .htpasswd correctly.");
 }
-echo '</div>';
 
 // divider, below is the images manager
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';

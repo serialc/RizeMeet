@@ -33,7 +33,6 @@ if (isset($_POST['rizemeet_new_session'])) {
 
 
 // List the sessions that exist
-$sess = array_diff(scandir(SESSIONS_DIR), array('.', '..'));
 echo <<< END
 <div class="container"><div class="row">
   <div class="col-12"><h2>Edit session</h2></div>
@@ -41,6 +40,8 @@ echo <<< END
   <div class="col-md-9 col-sm-8"><div class="row">
 END;
 
+$sess = array_diff(scandir(SESSIONS_DIR), array('.', '..'));
+arsort($sess);
 foreach ($sess as $s) {
     echo '<div class="col-md-4 col-sm-6 mb-3"><a href=".?session=' . $s . '#manage_sessions"><button class="btn btn-secondary w-100">' . $s . '</button></a></div>';
 }

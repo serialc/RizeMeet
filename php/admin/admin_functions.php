@@ -179,6 +179,21 @@ function parseFileUploadForErrors($fup)
     return true;
 }
 
+function createHtaccessFile( $access_path, $passwd_path )
+{
+    if (!file_exists(ADMIN_HTACCESS_FILE)) {
+        # Require credentials to access directory
+        $authcont  = "AuthType Basic\n" .
+            "AuthName \"Please provide the username and password to access PORG administration.\"\n" .
+            "AuthUserFile " . $passwd_path . "\n" .
+            "Require valid-user";
+
+        if(file_put_contents(ADMIN_HTACCESS_FILE, $authcont)) {
+            alertSuccess("Created .htaccess file successfully.");
+        }
+    }
+}
+
 
 // https://stackoverflow.com/questions/4594180/
 function deleteFolderContents($fp, $keep_dir=FALSE)

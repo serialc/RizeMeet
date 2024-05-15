@@ -9,16 +9,20 @@ use Htpasswd;
 if (isset($_POST['rizemeet_admin_delete'])) {
     $duname = $_POST['rizemeet_admin_delete'];
 
+    // initialize class object that manages the htpasswd file
+    $htpasswd = new Htpasswd(ADMIN_HTPASSWD_FILE);
+
     // check either isn't empty
-    if ($duname == "") {
-        alertWarning("No username provided");
+    if (strcmp($duname, "") === 0) {
+        alertWarning("No username provided!");
+    } elseif (count($htpasswd->getUsers()) === 1) {
+        alertWarning("You cannot have less than one administrator!");
     } else {
-        $htpasswd = new Htpasswd(ADMIN_HTPASSWD_FILE);
         if ($htpasswd->userExists($duname)) {
             $htpasswd->deleteUser($duname);
-            alertSuccess('User ' . $duname . ' deleted');
+            alertSuccess('User ' . $duname . ' deleted!');
         } else {
-            alertWarning('User ' . $duname . ' does not exist');
+            alertWarning('User ' . $duname . ' does not exist!');
         }
     }
 } 

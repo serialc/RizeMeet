@@ -4,18 +4,16 @@
 
 namespace frakturmedia\RizeMeet;
 
-// first check that a '.htaccess' file exists otherwise prevent display
-if (!file_exists('.htaccess')) {
-  echo "Create and configure the 'www/admin/.htaccess' file to enable administration.";
-  return;
-}
-
 // move to same directory as main index page to use the same constants
 chdir('..');
 
+// loads the general functions, classes, and constants
 require_once('../php/initialization.php');
 // $site specifies the site details based on site.toml
 require_once('../php/admin/admin_functions.php');
+
+// we need to know the full path of the admin dir (in another file)
+$admin_dir = __DIR__;
 
 if (isset($_GET['download'])) {
 
