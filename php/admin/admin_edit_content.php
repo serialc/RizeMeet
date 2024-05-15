@@ -6,7 +6,7 @@ namespace frakturmedia\RizeMeet;
 
 use Yosymfony\Toml\Toml;
 
-echo '<div class="container" id="manage_page"><div class="row"><div class="col"><h1>Page Content <img id="icon_manage_page" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+echo '<div class="container" id="manage_page"><div class="row"><div class="col"><h1 id="icon_manage_page" class="intico">Page Content</h1></div></div></div>';
 
 echo '<div id="manage_page_content">';
 

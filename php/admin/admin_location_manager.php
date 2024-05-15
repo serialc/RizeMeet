@@ -7,9 +7,9 @@ namespace frakturmedia\RizeMeet;
 // check that the room/locations directory exists
 if (!file_exists(EVENT_ROOMS_FOLDER)) { mkdir(EVENT_ROOMS_FOLDER); }
 
-// heading for session management
+// heading for location management
 echo '<div id="manage_locations" class="container mb-2"><div class="row"><div class="col">' .
-     '<h1>Meeting Locations <img id="icon_manage_locations" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+     '<h1 id="icon_manage_locations" class="intico">Meeting Locations</h1></div></div></div>';
 
 echo '<div id="manage_locations_content">';
 

@@ -9,7 +9,7 @@ use Htpasswd;
 // select Parsedown from the global namespace
 $parsedown = new \Parsedown();
 
-// check if there's at least on administrator in the .htpasswd
+// check if there's at least one administrator in the .htpasswd
 // if not, show the form to create it
 include('../php/admin/admin_add_user_processing.php');
 $htpasswd = new Htpasswd(ADMIN_HTPASSWD_FILE);
@@ -20,11 +20,8 @@ if(count($htpasswd->getUsers()) === 0) {
     return;
 }
 
-echo '<div class="container"><div class="row"><div class="col"><h1>Event</h1></div></div></div>';
+echo '<div class="container"><div class="row"><div class="col"><h1>Next event</h1></div></div></div>';
 
-// show the form for the regular meeting time
-include('../php/admin/admin_regular_event.php');
-// this may change the next event date so load the NextEvent() after this
 
 // process submitted form to customize the next event (date, location, topics)
 include('../php/admin/admin_process_event.php');
@@ -36,7 +33,12 @@ $next_event = determineNextEvent($conf);
 include('../php/admin/admin_next_event.php');
 
 // show the form to email registrants with info on next event
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 include '../php/admin/admin_mailing_list_manager.php';
+
+// show the form for the regular meeting date time
+echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
+include('../php/admin/admin_regular_event.php');
 
 // Manage locations
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
@@ -55,7 +57,7 @@ include('../php/admin/admin_manage_styling.php');
 echo '<div class="container"><div class="row"><div class="col"><hr></div></div></div>';
 
 echo '<div id="manage_admin" class="container"><div class="row"><div class="col">' .
-     '<h1>Administrators <img id="icon_manage_admin" class="intico" src="/imgs/icons/rise.svg"></h1>' .
+     '<h1 id="icon_manage_admin" class="intico">Administrators</h1>' .
      '</div></div></div>';
 
 // process .htpasswd username addition

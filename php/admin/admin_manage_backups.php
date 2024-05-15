@@ -7,7 +7,7 @@ namespace frakturmedia\RizeMeet;
 require_once('../php/classes/email_list.php');
 
 // display form
-echo '<div class="container" id="manage_backup"><div class="row"><div class="col"><h1>Backups <img id="icon_manage_backup" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+echo '<div class="container" id="manage_backup"><div class="row"><div class="col"><h1 id="icon_manage_backup" class="intico">Backups</h1></div></div></div>';
 
 // the container that has visibility toggled
 echo '<div id="manage_backup_content">';

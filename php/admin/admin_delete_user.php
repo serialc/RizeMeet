@@ -30,7 +30,7 @@ if (isset($_POST['rizemeet_admin_delete'])) {
 echo '<form action=".#manage_admin" method="post">';
 echo '<div class="container"><div class="row">';
 
-echo '<div class="col-12"><h2>Delete admin</h2></div>';
+echo '<div class="col-12"><h2>Delete</h2></div>';
 echo '<div class="col-lg-6 col-md-12">' .
      '<p>Administrators: ';
 

@@ -5,8 +5,10 @@
 namespace frakturmedia\RizeMeet;
 
 echo '<form action="." method="post">';
-echo '<div class="container">';
+echo '<div id="manage_regular_event" class="container mb-2"><div class="row"><div class="col">' .
+     '<h1 id="icon_manage_regular_event" class="intico">Regular Event Schedule</h1></div></div></div>';
 
+echo '<div class="container">';
 // update date
 $errors = false;
 if (isset($_POST['rizemeet_event_regularity'])) {
@@ -46,9 +48,8 @@ if (!$errors and (isset($_POST['rizemeet_event_regularity']) or isset($_POST['ri
 }
 
 // show the date form
-echo '<div class="row"><div class="col-12"><h2>Regular event schedule</h2></div></div>';
 
-echo '<div id="form_regular_schedule" class="row">' .
+echo '<div id="manage_regular_event_content" class="row">' .
     '<div class="col-lg-6">' .
     '<p>Provide in textual form, when your regular event should occur.</p>' .
     '</div>';

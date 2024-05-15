@@ -17,17 +17,19 @@ if (isset($_POST["css_styling"])) {
     copy(SITE_CUSTOM_CSS, WWW_SITE_CUSTOM_CSS);
 }
 
-echo '<div class="container" id="manage_style"><div class="row"><div class="col"><h1>Styling <img id="icon_manage_style" class="intico" src="/imgs/icons/rise.svg"></h1></div></div></div>';
+echo '<div class="container" id="manage_style"><div class="row"><div class="col">';
+echo '<h1 id="icon_manage_style" class="intico">Styling</h1></div></div></div>';
 
 echo '<div id="manage_style_content">';
 
 echo <<< END
 <form action=".#manage_style" method="post">
 <div class="container"><div class="row mb-3">
-<div class="col-lg-3 col-md-12"><h2>Edit the site's CSS styling</h2></div>
-<div class="col-lg-3"><p>Refresh your browser cache to see changes (Ctrl-Shift-R)</p></div>
-<div class="col-md-3 d-lg-none"></div>
-<div class="col-lg-9 col-md-9"><div class="input-group">
+<div class="col-lg-4 col-md-12">
+    <h2>Edit the site's CSS</h2>
+    <p>Refresh your browser cache to see changes (Ctrl-Shift-R)</p>
+</div>
+<div class="col-lg-8 col-md-12"><div class="input-group">
 <textarea id="css_styling" class="w-100" name="css_styling" rows="5">
 END;
 

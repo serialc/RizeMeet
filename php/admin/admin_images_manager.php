@@ -8,9 +8,8 @@ echo <<< END
 <div id="manage_images" class="container">
  <div class="row">
   <div class="col-12">
-   <h1>
+   <h1 id="icon_manage_images" class="intico">
     Images 
-    <img id="icon_manage_images" class="intico" src="/imgs/icons/rise.svg">
    </h1>
   </div>
  </div>

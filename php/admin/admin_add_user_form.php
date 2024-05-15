@@ -9,7 +9,7 @@ use Htpasswd;
 echo '<form action=".#manage_admin" method="post">';
 echo '<div class="container"><div class="row">';
 
-echo '<div class="col-12"><h2>Add admin</h2></div>';
+echo '<div class="col-12"><h2>Add</h2></div>';
 echo '<div class="col-lg-6 col-md-12">' .
      '<p>Set a username and password to access the admin area.</p>' .
      '</div>';

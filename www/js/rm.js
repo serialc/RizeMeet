@@ -19,7 +19,7 @@ RM.toggle = function(tid)
 RM.init = function()
 {
     let s;
-    let sections = ['sessions', 'admin', 'images', 'page', 'locations', 'style', 'backup'];
+    let sections = ['regular_event', 'sessions', 'admin', 'images', 'page', 'locations', 'style', 'backup'];
 
     for(s in sections) {
         // define section with let in iteration to prevent lexical scoping

@@ -15,7 +15,7 @@ $maillist = new MailingList();
 echo '<div class="container mt-2">
     <form action=".#contacts_mailing_list" method="post">
         <div class="row">
-            <div class="col-12 mt-2"><h2 id="contacts_mailing_list">Contacts mailing list</h2></div>';
+            <div class="col-12 mt-2"><h1 id="contacts_mailing_list">Contacts mailing list</h1></div>';
 
 
 // process the email text, send it to the mailing list
@@ -143,7 +143,7 @@ if ( isset($conf['rizemeet_location']) and strcmp($conf['rizemeet_location'], ""
 echo <<< END
                 </textarea>
 
-                <div class="btn-group pt-2" role="group">
+                <div class="btn-group pt-2 input-group" role="group">
                     <label class="input-group-text" for="cit_none">Send calendar invitation type</label>
 
                     <input class="btn-check" type="radio" name="calendar_invite_type" id="cit_none" value="none" checked>
@@ -152,13 +152,13 @@ echo <<< END
                     <input class="btn-check" type="radio" name="calendar_invite_type" id="cit_new" value="new">
                     <label class="btn btn-outline-primary" for="cit_new">New</label>
 
-                    <input class="btn-check" type="radio" name="calendar_invite_type" id="cit_update" value="update">
+                    <input class="btn-check" type="radio" name="calendar_invite_type" id="cit_update" value="update" disabled>
                     <label class="btn btn-outline-primary" for="cit_update">Update</label>
                 </div>
 
             </div>
 
-            <div class="col-12 text-end">
+            <div class="col-12 text-end mt-2">
                 <button type="submit" class="btn btn-primary">Send emails</button>
             </div>
         </div>
