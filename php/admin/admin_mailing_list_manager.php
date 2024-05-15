@@ -120,7 +120,7 @@ echo '<div class="col-lg-3 col-md-12"><p class="text-primary mb-1">Members on th
 
 echo '<div class="col-lg-9 col-md-12">' .
        '<textarea id="rizemeet_email_text" name="rizemeet_email_text" rows="10" class="w-100">' . 
-        'Dear ' . $site['brand'] . ' subscriber,';
+        'Dear ' . $site['brand'] . " subscriber,\n\n";
 
 
 // Create the template text for the email to send out
