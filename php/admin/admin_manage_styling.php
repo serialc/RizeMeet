@@ -4,6 +4,9 @@
 
 namespace frakturmedia\RizeMeet;
 
+if ( !is_writable(SITE_CUSTOM_CSS) ) {
+    exit("Check 'www/css' permissions");
+}
 
 // generate the css from the template if it doesn't exist
 if (!file_exists(SITE_CUSTOM_CSS)) {

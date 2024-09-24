@@ -18,14 +18,18 @@ END;
 
 echo '<div id="manage_images_content">';
 
+if ( !is_writable(WWW_IMAGES_FOLDER) ) {
+    exit("Check 'www/imgs' permissions");
+}
+
 // check if the necessary folders exist, create them if not
 if (!file_exists(SITE_IMAGES_FOLDER)) {
     // a copy is stored on the site folder - for backup
     mkdir(SITE_IMAGES_FOLDER);
 }
-if (!file_exists(WWW_SITE_IMAGES_FOLDER)) {
+if (!file_exists(WWW_IMAGES_SITE_FOLDER)) {
     // this is the 'live' version of the image
-    mkdir(WWW_SITE_IMAGES_FOLDER);
+    mkdir(WWW_IMAGES_SITE_FOLDER);
 }
 
 
@@ -96,7 +100,7 @@ echo '<div class="form-text mb-2">Server settings: ' .
 echo '</form> </div> </div> </div>';
 
 // get list of imgs/rscs
-$rscs = array_diff(scandir(WWW_SITE_IMAGES_FOLDER), array('.', '..'));
+$rscs = array_diff(scandir(WWW_IMAGES_SITE_FOLDER), array('.', '..'));
 
 // validate / file deletion
 if (isset($_POST['delete_rscs'])) {
@@ -106,12 +110,12 @@ if (isset($_POST['delete_rscs'])) {
             // if there's a match delete it from the two resource locations
             if (in_array($val, $rscs)) {
                 unlink(SITE_IMAGES_FOLDER . $val);
-                unlink(WWW_SITE_IMAGES_FOLDER . $val);
+                unlink(WWW_IMAGES_SITE_FOLDER . $val);
             }
         }
     }
     // update list of files as some files may have been deleted
-    $rscs = array_diff(scandir(WWW_SITE_IMAGES_FOLDER), array('.', '..'));
+    $rscs = array_diff(scandir(WWW_IMAGES_SITE_FOLDER), array('.', '..'));
 }
 
 // list the images that are uploaded

@@ -181,6 +181,11 @@ function parseFileUploadForErrors($fup)
 
 function createHtaccessFile( $access_path, $passwd_path )
 {
+    // if we can't write then stop and have admin fix this
+    if( !is_writable(ADMIN_AREA) ) {
+        exit(".htaccess file is not writable");
+    }
+
     if (!file_exists(ADMIN_HTACCESS_FILE)) {
         # Require credentials to access directory
         $authcont  = "AuthType Basic\n" .
@@ -188,7 +193,7 @@ function createHtaccessFile( $access_path, $passwd_path )
             "AuthUserFile " . $passwd_path . "\n" .
             "Require valid-user";
 
-        if(file_put_contents(ADMIN_HTACCESS_FILE, $authcont)) {
+        if( file_put_contents(ADMIN_HTACCESS_FILE, $authcont) ) {
             alertSuccess("Created .htaccess file successfully.");
         }
     }

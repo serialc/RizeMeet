@@ -28,13 +28,15 @@ define("CUSTOM_CSS_TEMPLATE", "../templates/custom.css");
 define("LOGSDIR", "../logs/");
 
 // other
-define("ADMIN_SALT_FILE", "admin/salt_file.txt");
+define("ADMIN_AREA", "admin/");
+define("ADMIN_SALT_FILE", ADMIN_AREA . "salt_file.txt");
 define("ADMIN_HTPASSWD_FILE", SITE_PATH . ".htpasswd");
-define("ADMIN_HTACCESS_FILE", "admin/.htaccess");
+define("ADMIN_HTACCESS_FILE", ADMIN_AREA . ".htaccess");
 define("ALLOWED_UPLOAD_FILE_TYPES", array("png", "gif", "svg", "jpg", "zip"));
 define("PASSWORD_HASH_COST", 10);
 define("TIMEZONE", 'CET');
-define("WWW_SITE_IMAGES_FOLDER", "imgs/site/");
+define("WWW_IMAGES_FOLDER", "imgs/");
+define("WWW_IMAGES_SITE_FOLDER", WWW_IMAGES_FOLDER . "site/");
 define("WWW_SITE_CUSTOM_CSS",    "css/custom.css");
 define("BACKUP_DIR", "../backups/");
 

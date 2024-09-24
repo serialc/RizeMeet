@@ -16,9 +16,9 @@ date_default_timezone_set(TIMEZONE);
 ini_set("log_errors", 1);
 ini_set("error_log", "php-error.log");
 
-// create site folder if it doesn't exist
-if ( !file_exists(SITE_PATH) ) {
-    mkdir(SITE_PATH);
+// notify if 
+if ( !file_exists(SITE_PATH) or !is_writable(SITE_PATH) ) {
+    exit("Create the 'site' folder and check write permissions");
 }
 
 // load or create ../php/config.php

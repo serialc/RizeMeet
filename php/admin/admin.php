@@ -9,6 +9,11 @@ use Htpasswd;
 // select Parsedown from the global namespace
 $parsedown = new \Parsedown();
 
+// check the www/admin folder exists and has permission
+if ( !is_writable('admin') ) {
+    exit("Check 'www/admin' write permissions");
+}
+
 // check if there's at least one administrator in the .htpasswd
 // if not, show the form to create it
 include('../php/admin/admin_add_user_processing.php');

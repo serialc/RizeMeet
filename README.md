@@ -1,5 +1,6 @@
 # RizeMeet facilitates recurring meeting organization
 
+## Purpose 
 You want to regularly meet with a group of friends/colleagues, etc... and coordinating meeting date, time, and place, while having a minimal presnece online that introduces your group.
 
 You need a content management system (CMS), but many of these are overly complex (e.g. Wordpress).
@@ -16,6 +17,12 @@ It fits for a specific niche requiring a specific and minimal functionality.
 You may find other CMS, such as Hugo, more suitable for anything more full-fledged as a website.
 
 You can choose to use the filesystem or a DB to store the mailing list.
+
+## Installation
+
+1. Create the site folder next to the 'www' and 'php' folders.
+2. Retrieve the PHP dependencies with composer. Run: `composer update``
+3. Depending on what permissions your server has you may need to set folder permissions for it to write to various folders (e.g., site, www/admin, www/imgs)
 
 ## Want to contribute?
 

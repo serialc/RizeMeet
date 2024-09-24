@@ -81,7 +81,17 @@ function determineNextEvent($conf)
     }
 
     // Location - get contents
-    $loc_contents = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
+    if ( !file_exists(EVENT_ROOMS_FOLDER) ) {
+        mkdir(EVENT_ROOMS_FOLDER);
+    }
+    if ( strcmp($conf['rizemeet_location'], "") == 0 ) {
+	$loc_contents = array(
+            "name" => "To be specified",
+	    "description" => "Details forthcoming"
+	);
+    } else {
+        $loc_contents = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
+    }
 
     // format event date for humans
     // l = day of week name
