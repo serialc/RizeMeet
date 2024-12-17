@@ -18,7 +18,11 @@ if ( !file_exists(EVENT_ROOMS_FOLDER) ) {
 $rizemeet_locs = array_diff(scandir(EVENT_ROOMS_FOLDER), array('.', '..'));
 
 // show the date form
-alertPrimary('Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime']);
+if ($next_event['defined']) {
+    alertPrimary('Next event is ' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . '-' . $next_event['etime']);
+} else {
+    alertWarning('Next event is not defined');
+}
 
 echo <<< END
 <div class="col-12"><h2>Date override</h2></div>

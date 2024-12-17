@@ -29,19 +29,26 @@ function loadEventDetails() {
 
 function determineNextEvent($conf)
 {
-    // get the requested date
-    if (strcmp($conf['rizemeet_date'], '') !== 0) {
-        $req_date = new \DateTime($conf['rizemeet_date']);
-    }
+    // if there's no set date
+    $event_date = null;
 
     // get today's date
     $today = new \DateTime(date('Y-m-d'));
     $is_today = false;
 
-    // if the requested date is in the future, or today, display that
-    if (strcmp($conf['rizemeet_date'], '') !== 0 and ($req_date == $today or $req_date > $today)) {
-        $event_date = $req_date;
-    } else {
+    // if a specific date is requested (not a regular meeting date)
+    // check if it's in the future
+    if (!empty($conf['rizemeet_date'])) {
+        $req_date = new \DateTime($conf['rizemeet_date']);
+
+        // if the requested date is today or in the future, display that
+        if (($req_date == $today or $req_date > $today)) {
+            $event_date = $req_date;
+        }
+    }
+
+    if (is_null($event_date) and !empty($conf['rizemeet_regular'])) {
+        // no valid requested date 
         // figure out the next regular date
 
         // get this month's nth Monday, next month's nth Monday
@@ -57,26 +64,26 @@ function determineNextEvent($conf)
         } else {
             $event_date = $nextmonth;
         }
-    }
 
-    // debug
-    /*
-    print($today->format('l, M d, Y'));
-    print('<br>');
-    print($thismonth->format('l, M d, Y'));
-    print('<br>');
-    print($nextmonth->format('l, M d, Y'));
-    print('<br>');
-     */
+        // debug
+        /*
+        print($today->format('l, M d, Y'));
+        print('<br>');
+        print($thismonth->format('l, M d, Y'));
+        print('<br>');
+        print($nextmonth->format('l, M d, Y'));
+        print('<br>');
+         */
+    }
 
     // Get the time, or use the default if not set
     $stime = '12:00';
     $etime = '13:00';
 
-    if (strcmp($conf['rizemeet_stime'], '') !== 0) {
+    if (!empty($conf['rizemeet_stime'])) {
         $stime = $conf['rizemeet_stime'];
     }
-    if (strcmp($conf['rizemeet_etime'], '') !== 0) {
+    if (!empty($conf['rizemeet_etime'])) {
         $etime = $conf['rizemeet_etime'];
     }
 
@@ -84,11 +91,11 @@ function determineNextEvent($conf)
     if ( !file_exists(EVENT_ROOMS_FOLDER) ) {
         mkdir(EVENT_ROOMS_FOLDER);
     }
-    if ( strcmp($conf['rizemeet_location'], "") == 0 ) {
-	$loc_contents = array(
+    if ( empty($conf['rizemeet_location'])) {
+        $loc_contents = array(
             "name" => "To be specified",
-	    "description" => "Details forthcoming"
-	);
+            "description" => "Details forthcoming"
+        );
     } else {
         $loc_contents = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
     }
@@ -99,7 +106,13 @@ function determineNextEvent($conf)
     // j = day of month number (without leading zero)
     // Y = full year
 
+    if ( is_null($event_date) ) {
+        return array(
+            "defined" => false,
+        );
+    }
     return array(
+        "defined" => true,
         "date" => $event_date,
         "pretty_date" => $event_date->format('l, M j, Y'),
         "today" => $is_today,

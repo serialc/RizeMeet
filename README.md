@@ -22,7 +22,7 @@ You can choose to use the filesystem or a DB to store the mailing list.
 
 1. Create the site folder next to the 'www' and 'php' folders.
 2. Retrieve the PHP dependencies with composer. Run: `composer update``
-3. Depending on what permissions your server has you may need to set folder permissions for it to write to various folders (e.g., site, www/admin, www/imgs)
+3. Depending on what permissions your server has you may need to set folder permissions for it to write to various folders (e.g., site, www/admin, www/imgs, www/css)
 
 ## Want to contribute?
 

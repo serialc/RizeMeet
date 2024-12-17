@@ -78,6 +78,14 @@ pre code {
     background-color: var(--col-code-light);
 }
 
+#mast_icon {
+    background-color: #879c97;
+}
+
+#brand_name {
+    color: #879c97;
+}
+
 .hero, .mini-hero {
     background-color: #879c97;
     color: black;

@@ -19,7 +19,11 @@ if (file_exists(SITE_PATH . 'introduction.md')) {
                 <p class="fs-4 text-warning">
 
 <?php
-echo $next_event['pretty_date'] . '<br>' . $next_event['stime'] . ' - ' . $next_event['etime'] . '</p>';
+if ($next_event['defined']) {
+    echo $next_event['pretty_date'] . '<br>' . $next_event['stime'] . ' - ' . $next_event['etime'] . '</p>';
+} else {
+    echo "Not defined";
+}
 ?>
 
                 <h3>Location</h3>
@@ -36,7 +40,7 @@ if ( isset($conf['rizemeet_location']) and
     $room = json_decode(file_get_contents(EVENT_ROOMS_FOLDER . $conf['rizemeet_location']), true);
     echo $parsedown->text($room['description']);
 } else {
-    echo 'No location set yet';
+    echo 'No location set';
 }
 ?>
 
@@ -48,7 +52,7 @@ if ( isset($conf['rizemeet_location']) and
 if ( $conf['rizemeet_meeting_topic'] ) {
     echo $parsedown->text($conf['rizemeet_meeting_topic']);
 } else {
-    echo 'Free form discussion';
+    echo 'Not yet specified';
 }
 ?>
                 </div>

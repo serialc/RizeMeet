@@ -4,25 +4,31 @@
 
 namespace frakturmedia\RizeMeet;
 
-echo '<form action="." method="post">';
+echo '<form action=".#manage_regular_event" method="post">';
 echo '<div id="manage_regular_event" class="container mb-2"><div class="row"><div class="col">' .
      '<h1 id="icon_manage_regular_event" class="intico">Regular Event Schedule</h1></div></div></div>';
 
 echo '<div class="container">';
 // update date
 $errors = false;
-if (isset($_POST['rizemeet_event_regularity'])) {
-    // validate first
-    $today = new \DateTime(date('Y-m-d'));
-    //print($today->format('l, M j, Y'));
+if (isset($_POST['rizemeet_event_regularity']) ) {
 
-    try {
-        // DateTime::modify() in PHP 8.3.0 throws an error, but earlier versions just throw a warning
-        // suppress the invalid date error/warning with '@'
-        // This won't trigger an exception. Update when we go to latest PHP.
-        @$valid_date_string = (clone $today)->modify($_POST['rizemeet_event_regularity']);
-    } catch (Exception $e) {
-        $valid_date_string = false;
+    // if empty, that's fine
+    if (empty($_POST['rizemeet_event_regularity'])) {
+        $valid_date_string = true;
+    } else {
+        // validate first
+        $today = new \DateTime(date('Y-m-d'));
+        //print($today->format('l, M j, Y'));
+
+        try {
+            // DateTime::modify() in PHP 8.3.0 throws an error, but earlier versions just throw a warning
+            // suppress the invalid date error/warning with '@'
+            // This won't trigger an exception. Update when we go to latest PHP.
+            @$valid_date_string = (clone $today)->modify($_POST['rizemeet_event_regularity']);
+        } catch (Exception $e) {
+            $valid_date_string = false;
+        }
     }
 
     // if valid
@@ -34,7 +40,7 @@ if (isset($_POST['rizemeet_event_regularity'])) {
     }
 }
 
-// update times
+// update event time start/end
 if (isset($_POST['rizemeet_stime'])) {
     $conf['rizemeet_stime'] = $_POST['rizemeet_stime'];
 }

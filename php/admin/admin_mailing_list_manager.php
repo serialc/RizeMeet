@@ -124,7 +124,11 @@ echo '<div class="col-lg-9 col-md-12">' .
 
 
 // Create the template text for the email to send out
-echo 'The next ' . $site['brand'] . ' meet-up is on **' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . ' - ' . $next_event['etime'] . '**.' . "\n\n";
+if ($next_event['defined']) {
+    echo 'The next ' . $site['brand'] . ' meet-up is on **' . $next_event['pretty_date'] . ' at ' . $next_event['stime'] . ' - ' . $next_event['etime'] . '**.' . "\n\n";
+} else {
+    echo 'Next event date is not defined';
+}
 
 echo 'The topic(s) for discussion are:  ' . "\n";
 
