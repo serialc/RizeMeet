@@ -1,7 +1,7 @@
 # RizeMeet facilitates recurring meeting organization
 
 ## Purpose 
-You want to regularly meet with a group of friends/colleagues, etc... and coordinating meeting date, time, and place, while having a minimal presnece online that introduces your group.
+You want to regularly meet with a group of friends/colleagues, etc... and coordinating meeting date, time, and place, while having a minimal presence online that introduces your group.
 
 You need a content management system (CMS), but many of these are overly complex (e.g. Wordpress).
 
@@ -32,5 +32,4 @@ See problems with functionality? Design? Interaction? Let us know.
 
 ## To do
 
-- Check the admin page date update - does it update visually on submit?
-- Use a month-code for each meeting - so sending a new invite will move the meeting rather than creating a second one
+- Enable update of calendar events.

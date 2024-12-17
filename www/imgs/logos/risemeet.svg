@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="8.0568705mm"
-   height="7.5401621mm"
-   viewBox="0 0 8.0568702 7.540162"
+   width="48.625607mm"
+   height="44.982548mm"
+   viewBox="0 0 48.625604 44.982546"
    version="1.1"
    id="svg1"
-   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
    sodipodi:docname="risemeet.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,25 +24,33 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showguides="true"
-     inkscape:zoom="24.498244"
-     inkscape:cx="15.225581"
-     inkscape:cy="14.266329"
+     inkscape:zoom="3.6724965"
+     inkscape:cx="95.983754"
+     inkscape:cy="101.0212"
      inkscape:window-width="1920"
-     inkscape:window-height="1011"
+     inkscape:window-height="1008"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1">
     <sodipodi:guide
-       position="0.92754285,57.472497"
+       position="11.878313,89.295409"
        orientation="0,-1"
        id="guide7"
        inkscape:locked="false" />
     <sodipodi:guide
-       position="2.8027558,51.736717"
+       position="13.753526,83.559628"
        orientation="0,-1"
        id="guide8"
        inkscape:locked="false" />
+    <inkscape:page
+       x="0"
+       y="0"
+       width="48.625607"
+       height="44.982548"
+       id="page1"
+       margin="0"
+       bleed="0" />
   </sodipodi:namedview>
   <defs
      id="defs1" />
@@ -50,7 +58,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-47.747473,-76.289113)">
+     transform="translate(-36.796702,-74.920267)">
     <rect
        style="display:none;fill:#ffffff;stroke:none;stroke-width:1;stroke-miterlimit:10;paint-order:fill markers stroke"
        id="rect1"
@@ -60,8 +68,8 @@
        y="76.289116" />
     <path
        id="path13"
-       style="fill:#000000;stroke:none;stroke-width:1;stroke-miterlimit:10;paint-order:fill markers stroke"
-       d="M 51.756123,77.035247 49.05508,81.71365 h 0.675355 9.5e-5 l 1.350332,-2.339012 0.337631,0.584753 -0.337631,0.584658 -1.012892,1.754449 h -1.35052 l -0.337631,0.584753 h 1.350521 1.350616 2.701043 1.350522 l -0.337631,-0.584848 -9.5e-5,-9.5e-5 h -1.35052 l -1.350428,-2.339107 0.337631,-0.584753 1.350521,2.339202 h 0.675261 l -1.350616,-2.339202 -0.337631,-0.584753 9.6e-5,-9.4e-5 -0.337631,-0.584753 -9.5e-5,9.4e-5 z m 9.4e-5,1.169601 0.33763,0.584847 -0.33763,0.584753 -0.337631,-0.584753 z m -9.4e-5,2.339296 1.012795,1.754164 h -2.025591 l 0.337629,-0.584753 z"
+       style="fill:#000000;stroke:none;stroke-width:5.00022;stroke-miterlimit:10;paint-order:fill markers stroke"
+       d="M 61.109271,82.790887 47.60346,106.18392 h 3.376924 4.75e-4 l 6.751958,-11.695562 1.688229,2.923894 -1.688229,2.923418 -5.064684,8.77262 h -6.752898 l -1.688229,2.9239 h 6.752903 6.753378 13.505811 6.752908 l -1.688229,-2.92437 -4.76e-4,-4.8e-4 h -6.752898 l -6.752437,-11.696038 1.688229,-2.923894 6.752903,11.696512 h 3.376454 l -6.753378,-11.696512 -1.68823,-2.923894 4.81e-4,-4.7e-4 -1.68823,-2.923894 -4.75e-4,4.7e-4 z m 4.7e-4,5.848263 1.688225,2.924364 -1.688225,2.923894 -1.688229,-2.923894 z m -4.7e-4,11.697 5.064198,8.77119 H 56.045068 l 1.688219,-2.92389 z"
        inkscape:label="rise" />
   </g>
 </svg>
