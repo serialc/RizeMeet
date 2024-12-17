@@ -29,7 +29,8 @@ echo '<div class="container"><div class="row"><div class="col"><h1>Next event</h
 
 
 // process submitted form to customize the next event (date, location, topics)
-include('../php/admin/admin_process_event.php');
+include('../php/admin/admin_process_specific_event.php');
+include('../php/admin/admin_process_regular_event.php');
 
 // repackage and determine the event based on $conf and today's date
 $next_event = determineNextEvent($conf);

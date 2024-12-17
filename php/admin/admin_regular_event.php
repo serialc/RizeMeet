@@ -9,48 +9,14 @@ echo '<div id="manage_regular_event" class="container mb-2"><div class="row"><di
      '<h1 id="icon_manage_regular_event" class="intico">Regular Event Schedule</h1></div></div></div>';
 
 echo '<div class="container">';
-// update date
-$errors = false;
-if (isset($_POST['rizemeet_event_regularity']) ) {
 
-    // if empty, that's fine
-    if (empty($_POST['rizemeet_event_regularity'])) {
-        $valid_date_string = true;
-    } else {
-        // validate first
-        $today = new \DateTime(date('Y-m-d'));
-        //print($today->format('l, M j, Y'));
+global $apre_errors;
 
-        try {
-            // DateTime::modify() in PHP 8.3.0 throws an error, but earlier versions just throw a warning
-            // suppress the invalid date error/warning with '@'
-            // This won't trigger an exception. Update when we go to latest PHP.
-            @$valid_date_string = (clone $today)->modify($_POST['rizemeet_event_regularity']);
-        } catch (Exception $e) {
-            $valid_date_string = false;
-        }
-    }
-
-    // if valid
-    if ($valid_date_string) {
-        $conf['rizemeet_regular'] = $_POST['rizemeet_event_regularity'];
-    } else {
-        alertDanger('<p>Event date is invalid. Try the following:</p><ul><li>Mondays</li><li>second Wednesday of this month</li><li>last Friday</li><li>first day of this month</li></ul>', false);
-        $errors = true;
-    }
-}
-
-// update event time start/end
-if (isset($_POST['rizemeet_stime'])) {
-    $conf['rizemeet_stime'] = $_POST['rizemeet_stime'];
-}
-if (isset($_POST['rizemeet_etime'])) {
-    $conf['rizemeet_etime'] = $_POST['rizemeet_etime'];
-}
-
-// save event details if any field was submitted (and there was no error above)
-if (!$errors and (isset($_POST['rizemeet_event_regularity']) or isset($_POST['rizemeet_stime']) or isset($_POST['rizemeet_etime'])) ) {
-        saveEventDetails($conf);
+// show a message here if there were errors
+if ($apre_errors) {
+    alertDanger('Event date is invalid. Try the following:</p><ul><li>Mondays</li><li>second Wednesday of this month</li><li>last Friday</li><li>first day of this month</li></ul>', false);
+} else {
+    alertSuccess('Update successful');
 }
 
 // show the date form

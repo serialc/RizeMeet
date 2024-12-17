@@ -1,5 +1,5 @@
 <?php
-// Filename: php/admin/admin_process_event.php
+// Filename: php/admin/admin_process_specific_event.php
 // Purpose: process the forms to customize the next meeting (location, date, subjects)
 
 namespace frakturmedia\RizeMeet;
